@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | MacVest Universal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon_io/apple-touch-icon.png ') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='images/favicon_io/site.webmanifest') }}">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+</head>
+<body>
+
+     <!-- Navigation Bar -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for ('home') }}" style="color: #eab308;">MacVest Universal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for ('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for ('dashboard') }}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for ('investments') }}">Investments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for ('transactions') }}">Transactions</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ url_for ('profile') }}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link text-danger" href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container profile-page mt-5" style="padding-top: 20px;">
+        <h2 class="text-center">User Profile</h2>
+    
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3">
+                <ul class="nav flex-column nav-pills profile-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab-personal" href="#">Personal Information</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-security" href="#">Security Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab-preferences" href="#">Account Preferences</a>
+                    </li>
+             
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" id="tab-delete" href="#">Delete Account</a>
+                    </li>
+                </ul>
+            </div>
+    
+            <!-- Content Display Area -->
+            <div class="col-md-9">
+                <div class="profile-content">
+                   
+                    <!-- Personal Information Section -->
+<div id="content-personal" class="profile-section">
+    <h3>Personal Information</h3>
+    <form id="personal-info-form">
+        <!-- Profile Picture Upload -->
+        <div class="mb-3 text-center">
+            <img id="profile-preview" src="{{ url_for('static', filename='img/default-avatar.png') }}" alt="Profile Picture" class="rounded-circle" width="100" height="100">
+            <input type="file" id="profile-picture" class="form-control mt-2" accept="image/*">
+        </div>
+
+        <!-- Full Name -->
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="full-name" class="form-control" placeholder="Enter full name">
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter email">
+        </div>
+
+        <!-- Phone Number -->
+        <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" id="phone" class="form-control" placeholder="Enter phone number">
+        </div>
+
+        <!-- Address -->
+        <div class="mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" id="address" class="form-control" placeholder="Enter address">
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="mb-3">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" id="dob" class="form-control">
+        </div>
+
+        <!-- Save Changes Button -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+
+        <!-- Success Message -->
+        <p id="personal-info-message" class="mt-3"></p>
+    </form>
+</div>
+
+    
+                    <!-- Security Settings -->
+<div id="content-security" class="profile-section d-none">
+    <h3>Security Settings</h3>
+
+    <!-- Change Password Form -->
+    <h5 class="mt-3">Change Password</h5>
+    <form id="change-password-form">
+        <div class="mb-3">
+            <label class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="current-password" placeholder="Enter current password" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-control" id="new-password" placeholder="Enter new password" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Confirm New Password</label>
+            <input type="password" class="form-control" id="confirm-password" placeholder="Confirm new password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Password</button>
+        <p id="password-message" class="text-danger mt-2"></p>
+    </form>
+
+    <hr>
+
+    <!-- Enable/Disable 2FA -->
+    <h5 class="mt-3">Two-Factor Authentication (2FA)</h5>
+    <p>Enhance account security by enabling Two-Factor Authentication.</p>
+    <button id="toggle-2fa" class="btn btn-warning">Enable 2FA</button>
+    <p id="2fa-status" class="mt-2"></p>
+
+    <hr>
+
+    <!-- View Recent Login Activity -->
+    <h5 class="mt-3">Recent Login Activity</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Device</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody id="login-activity">
+            <!-- Login history will be inserted here dynamically -->
+        </tbody>
+    </table>
+</div>
+
+    
+                    <!-- Account Preferences -->
+<div id="content-preferences" class="profile-section d-none">
+    <h3>Account Preferences</h3>
+
+    <!-- Theme Selection -->
+    <h5 class="mt-3">Theme Selection</h5>
+    <select id="theme-selector" class="form-select mb-3">
+        <option value="light">Light Mode</option>
+        <option value="dark">Dark Mode</option>
+    </select>
+
+    <!-- Language Selection -->
+    <h5 class="mt-3">Language Selection</h5>
+    <select id="language-selector" class="form-select mb-3">
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+    </select>
+
+    <!-- Default Currency Selection -->
+    <h5 class="mt-3">Default Currency</h5>
+    <select id="currency-selector" class="form-select mb-3">
+        <option value="USD">$ - US Dollar</option>
+        <option value="EUR">€ - Euro</option>
+        <option value="GBP">£ - British Pound</option>
+    </select>
+
+    <button id="save-preferences" class="btn btn-primary">Save Preferences</button>
+    <p id="preferences-message" class="mt-2"></p>
+</div>
+
+    
+                   <!-- Delete Account -->
+<div id="content-delete" class="profile-section d-none text-center">
+    <h3 class="text-danger">Delete Account</h3>
+    <p class="text-muted">This action is irreversible. Once you delete your account, all data will be lost permanently.</p>
+    
+    <!-- Password Confirmation -->
+    <div class="mb-3">
+        <label for="confirm-password" class="form-label">Enter Password to Confirm:</label>
+        <input type="password" id="confirm-password" class="form-control" placeholder="Enter your password">
+    </div>
+
+    <!-- Delete Button -->
+    <button id="delete-account-btn" class="btn btn-danger">Delete My Account</button>
+
+    <!-- Feedback Message -->
+    <p id="delete-account-message" class="mt-3"></p>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="dashboard-footer">
+        <div class="container text-center">
+            <p>&copy; 2025 MacVest Universal. All Rights Reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Contact</a>
+            </p>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</body>
+</html>

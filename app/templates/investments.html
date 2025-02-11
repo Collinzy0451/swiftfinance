@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investments | MacVest Universal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon_io/apple-touch-icon.png ') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='images/favicon_io/site.webmanifest') }}">
+
+
+    <!-- Link to your external CSS file for the Investments page -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/investments.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar (re-used for consistency) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for ('home') }}" style="color: #eab308;">MacVest Universal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for ('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for ('dashboard') }}">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="{{ url_for ('investments') }}">Investments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for ('transactions') }}">Transactions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for ('profile') }}">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link text-danger" href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+<!-- Main Investments Container -->
+<div class="container investments-container mt-5 pt-5">
+    <h2 class="text-center my-4">Investment Opportunities</h2>
+    <div class="row">
+        <!-- Investment Card: Gold -->
+        <div class="col-md-4 mb-4">
+            <div class="card investment-card">
+                <div class="card-icon text-center mt-3">
+                    <i class="fas fa-gem fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Gold</h5>
+                    <p class="card-text">Invest in gold for a stable and secure portfolio.</p>
+                    <a href="#" class="btn btn-primary">Invest Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Card: AI -->
+        <div class="col-md-4 mb-4">
+            <div class="card investment-card">
+                <div class="card-icon text-center mt-3">
+                    <i class="fas fa-robot fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Artificial Intelligence</h5>
+                    <p class="card-text">Harness the power of AI-driven market insights.</p>
+                    <a href="#" class="btn btn-primary">Invest Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Card: Stock Market -->
+        <div class="col-md-4 mb-4">
+            <div class="card investment-card">
+                <div class="card-icon text-center mt-3">
+                    <i class="fas fa-chart-line fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Stock Market</h5>
+                    <p class="card-text">Trade and invest in top-performing stocks.</p>
+                    <a href="#" class="btn btn-primary">Invest Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Card: Real Estate -->
+        <div class="col-md-4 mb-4">
+            <div class="card investment-card">
+                <div class="card-icon text-center mt-3">
+                    <i class="fas fa-building fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Real Estate</h5>
+                    <p class="card-text">Secure your future with strategic property investments.</p>
+                    <a href="#" class="btn btn-primary">Invest Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Card: Cryptocurrency -->
+        <div class="col-md-4 mb-4">
+            <div class="card investment-card">
+                <div class="card-icon text-center mt-3">
+                    <i class="fab fa-bitcoin fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Cryptocurrency</h5>
+                    <p class="card-text">Join the digital currency revolution.</p>
+                    <a href="#" class="btn btn-primary">Invest Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Buy & Sell Assets Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Buy & Sell Assets</h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h4 class="text-center">Execute Trade</h4>
+                
+                <!-- Select Asset -->
+                <div class="mb-3">
+                    <label for="assetType" class="form-label">Select Asset:</label>
+                    <select id="assetType" class="form-select">
+                        <option value="gold">Gold</option>
+                        <option value="ai">Artificial Intelligence</option>
+                        <option value="stocks">Stock Market</option>
+                        <option value="real_estate">Real Estate</option>
+                        <option value="crypto">Cryptocurrency</option>
+                    </select>
+                </div>
+
+                <!-- Input Amount -->
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount ($):</label>
+                    <input type="number" id="amount" class="form-control" placeholder="Enter amount">
+                </div>
+
+                <!-- Buy/Sell Buttons -->
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-success w-45">Buy</button>
+                    <button class="btn btn-danger w-45">Sell</button>
+                </div>
+
+                <!-- Transaction Summary -->
+                <div class="alert alert-info mt-3" id="transactionSummary" style="display: none;">
+                    <p><strong>Asset:</strong> <span id="summaryAsset"></span></p>
+                    <p><strong>Amount:</strong> $<span id="summaryAmount"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Investment Details Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Manage Your Investments</h2>
+
+    <!-- Tab Navigation -->
+    <ul class="nav nav-tabs justify-content-center" id="investmentTabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#gold">Gold</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#ai">AI</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#stocks">Stocks</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#realestate">Real Estate</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#crypto">Crypto</a>
+        </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content mt-3">
+        <!-- Gold Investment -->
+        <div class="tab-pane fade show active" id="gold">
+            <div class="card p-4 text-center">
+                <h4>Gold Investment</h4>
+                <p><strong>Total Holdings:</strong> $5,000</p>
+                <p><strong>Past Performance:</strong> +10% last month</p>
+                <p><strong>Current Value:</strong> $5,500</p>
+            </div>
+        </div>
+
+        <!-- AI Investment -->
+        <div class="tab-pane fade" id="ai">
+            <div class="card p-4 text-center">
+                <h4>AI Investment</h4>
+                <p><strong>Total Holdings:</strong> $3,200</p>
+                <p><strong>Past Performance:</strong> +15% last month</p>
+                <p><strong>Current Value:</strong> $3,680</p>
+            </div>
+        </div>
+
+        <!-- Stocks Investment -->
+        <div class="tab-pane fade" id="stocks">
+            <div class="card p-4 text-center">
+                <h4>Stocks Investment</h4>
+                <p><strong>Total Holdings:</strong> $7,000</p>
+                <p><strong>Past Performance:</strong> +8% last month</p>
+                <p><strong>Current Value:</strong> $7,560</p>
+            </div>
+        </div>
+
+        <!-- Real Estate Investment -->
+        <div class="tab-pane fade" id="realestate">
+            <div class="card p-4 text-center">
+                <h4>Real Estate Investment</h4>
+                <p><strong>Total Holdings:</strong> $10,000</p>
+                <p><strong>Past Performance:</strong> +5% last month</p>
+                <p><strong>Current Value:</strong> $10,500</p>
+            </div>
+        </div>
+
+        <!-- Crypto Investment -->
+        <div class="tab-pane fade" id="crypto">
+            <div class="card p-4 text-center">
+                <h4>Crypto Investment</h4>
+                <p><strong>Total Holdings:</strong> $2,000</p>
+                <p><strong>Past Performance:</strong> +20% last month</p>
+                <p><strong>Current Value:</strong> $2,400</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Deposit & Withdraw Funds Section -->
+<div class="container fund-management text-center mt-5">
+    <h2 class="my-4">Manage Your Funds</h2>
+    
+    <form class="fund-form">
+        <div class="mb-3">
+            <label for="fund-amount" class="form-label">Enter Amount</label>
+            <input type="number" id="fund-amount" class="form-control mx-auto" placeholder="Enter amount">
+        </div>
+
+        <div class="mb-3">
+            <label for="fund-method" class="form-label">Select Payment Method</label>
+            <select id="fund-method" class="form-select mx-auto">
+                <option value="bank">Bank Transfer</option>
+                <option value="crypto">Cryptocurrency</option>
+                <option value="card">Credit/Debit Card</option>
+            </select>
+        </div>
+
+        <div class="d-flex justify-content-center gap-3">
+            <button type="button" class="btn btn-success">Deposit</button>
+            <button type="button" class="btn btn-danger">Withdraw</button>
+        </div>
+    </form>
+</div>
+
+<!-- Auto-Invest & Investment Calculator Section -->
+<div class="container auto-invest-calculator-container mt-5">
+    <h2 class="text-center my-4">Auto-Invest & Investment Calculator</h2>
+
+    <div class="row">
+        <!-- Auto-Invest Section -->
+        <div class="col-md-6">
+            <div class="auto-invest-section text-center p-4">
+                <h3>Auto-Invest</h3>
+                <p>Set up recurring investments for long-term growth.</p>
+
+                <form id="auto-invest-form">
+                    <div class="mb-3">
+                        <label for="auto-invest-amount" class="form-label">Investment Amount ($)</label>
+                        <input type="number" id="auto-invest-amount" class="form-control mx-auto" placeholder="Enter amount">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="auto-invest-frequency" class="form-label">Investment Frequency</label>
+                        <select id="auto-invest-frequency" class="form-control mx-auto">
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn-success">Set Auto-Invest</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Investment Calculator Section -->
+        <div class="col-md-6">
+            <div class="investment-calculator-section text-center p-4">
+                <h3>Investment Calculator</h3>
+                <p>Estimate your investment growth over time.</p>
+
+                <form id="calculator-form">
+                    <div class="mb-3">
+                        <label for="investment-amount" class="form-label">Investment Amount ($)</label>
+                        <input type="number" id="investment-amount" class="form-control mx-auto" placeholder="Enter amount">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="investment-duration" class="form-label">Investment Duration</label>
+                        <input type="number" id="investment-duration" class="form-control mx-auto" placeholder="Enter duration (months)">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="expected-return" class="form-label">Expected Return (%)</label>
+                        <input type="number" id="expected-return" class="form-control mx-auto" placeholder="Enter expected return">
+                    </div>
+
+                    <button type="button" class="btn btn-primary" onclick="calculateInvestment()">Calculate</button>
+
+                    <div id="investment-result" class="mt-4"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="dashboard-footer">
+    <div class="container text-center">
+        <p>&copy; 2025 MacVest Universal. All Rights Reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Contact</a>
+        </p>
+    </div>
+</footer>
+
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</body>
+</html>

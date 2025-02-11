@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | MacVest Universal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon_io/apple-touch-icon.png ') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='images/favicon_io/site.webmanifest') }}">
+
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for ('home') }}" style="color: #eab308;">MacVest Universal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('investments') }}">Investments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('transactions') }}">Transactions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for ('profile') }}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="#logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="container dashboard-container text-center" style="margin-top: 100px;">
+        <div>
+            <h2 class="mb-3">Welcome to Your Dashboard</h2>
+            <p class="text-muted">Manage your investments in Gold, AI, Stock Market, Real Estate, and Crypto.</p>
+        </div>
+    </section>
+    
+    <section class="container mt-5">
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card summary-card p-3 shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Account Balance</h5>
+                        <h3 class="text-success">$15,750</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card summary-card p-3 shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Investments</h5>
+                        <h3 class="text-primary">$32,500</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card summary-card p-3 shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Profit/Loss</h5>
+                        <h3 class="text-warning">+5.3%</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card summary-card p-3 shadow">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Recent Transactions</h5>
+                        <p class="mb-1">Deposit - $5,000</p>
+                        <p>Crypto Investment - $2,000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Portfolio Section -->
+<div class="container mt-4">
+    <h4 class="section-title">Investment Portfolio</h4>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Investment Type</th>
+                    <th>Amount Invested</th>
+                    <th>Current Value</th>
+                    <th>Profit/Loss (%)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gold</td>
+                    <td>$5,000</td>
+                    <td>$5,600</td>
+                    <td class="text-success">+12%</td>
+                    <td class="text-success">Active</td>
+                </tr>
+                <tr>
+                    <td>Artificial Intelligence</td>
+                    <td>$3,000</td>
+                    <td>$3,450</td>
+                    <td class="text-success">+15%</td>
+                    <td class="text-success">Active</td>
+                </tr>
+                <tr>
+                    <td>Stock Market</td>
+                    <td>$10,000</td>
+                    <td>$9,500</td>
+                    <td class="text-danger">-5%</td>
+                    <td class="text-danger">Closed</td>
+                </tr>
+                <tr>
+                    <td>Real Estate</td>
+                    <td>$7,500</td>
+                    <td>$8,200</td>
+                    <td class="text-success">+9%</td>
+                    <td class="text-success">Active</td>
+                </tr>
+                <tr>
+                    <td>Crypto</td>
+                    <td>$6,000</td>
+                    <td>$7,500</td>
+                    <td class="text-success">+25%</td>
+                    <td class="text-success">Active</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Transaction History Section -->
+<div class="container mt-5">
+    <h4 class="section-title">Recent Transactions</h4>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>Date & Time</th>
+                    <th>Type</th>
+                    <th>Amount ($)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TXN12345</td>
+                    <td>2025-02-07 14:35</td>
+                    <td>Deposit</td>
+                    <td>5,000</td>
+                    <td><span class="status-completed">Completed</span></td>
+                </tr>
+                <tr>
+                    <td>TXN12346</td>
+                    <td>2025-02-06 11:20</td>
+                    <td>Withdrawal</td>
+                    <td>2,000</td>
+                    <td><span class="status-pending">Pending</span></td>
+                </tr>
+                <tr>
+                    <td>TXN12347</td>
+                    <td>2025-02-05 09:15</td>
+                    <td>Investment</td>
+                    <td>3,000</td>
+                    <td><span class="status-completed">Completed</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Referral System Section -->
+<div class="container mt-5">
+    <h4 class="section-title">Referral Program</h4>
+    <p class="text-center">Invite your friends and earn rewards! Share your referral link and earn commissions on each signup.</p>
+    
+    <div class="referral-box d-flex flex-wrap align-items-center justify-content-center mt-3">
+        <input type="text" class="form-control referral-link" value="https://MacVestUniversal.com/referral?code=ABC123" readonly>
+        <button class="btn btn-primary copy-btn ms-2" onclick="copyReferralLink()">Copy Link</button>
+    </div>
+    
+    <div class="referral-stats text-center mt-3">
+        <p><strong>Total Referrals:</strong> 15</p>
+        <p><strong>Total Earnings:</strong> $150</p>
+    </div>
+</div>
+<!-- Support & Community Section -->
+<div class="container mt-5">
+    <h4 class="section-title">Support & Community</h4>
+    <div class="row support-section">
+        <!-- Customer Support Box -->
+        <div class="col-md-6 support-box">
+            <h5>Customer Support</h5>
+            <p>If you have any issues or questions about your investments, our support team is here to help.</p>
+            <a href="#" class="btn btn-primary">Contact Support</a>
+        </div>
+        <!-- Help Center & FAQs Box -->
+        <div class="col-md-6 support-box">
+            <h5>Help Center & FAQs</h5>
+            <p>Find answers to common questions and tips to maximize your investment potential.</p>
+            <a href="#" class="btn btn-secondary">Visit Help Center</a>
+        </div>
+    </div>
+</div>
+
+<!-- Dashboard Footer Section -->
+<footer class="dashboard-footer">
+    <div class="container text-center">
+        <p>&copy; 2025 MacVest Universal. All Rights Reserved.</p>
+        <p>
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Contact</a>
+        </p>
+    </div>
+</footer>
+
+
+
+<script>
+    function copyReferralLink() {
+        var copyText = document.querySelector('.referral-link');
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+        navigator.clipboard.writeText(copyText.value);
+        alert("Referral link copied: " + copyText.value);
+    }
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+body {
+    background-color: #f8f9fa;
+}
+.navbar-brand {
+    font-weight: bold;
+}
+
+.card-body h3 {
+    font-weight: bold;
+    color: #eab308;
+}
+.nav-link:hover {
+    text-decoration: underline;
+
+}
+
+    .dashboard-container {
+        padding-top: 50px;
+    }
+    .summary-card {
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+    .summary-card:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Section Title */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Investment Table */
+.table {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thead-dark {
+    background: #343a40;
+    color: #fff;
+}
+
+/* Profit/Loss Colors */
+.text-success {
+    color: green;
+    font-weight: bold;
+}
+
+.text-danger {
+    color: red;
+    font-weight: bold;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.9rem;
+    }
+}
+
+/* Section Title Styling for all sections */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Transaction Table Styling */
+.table {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thead-dark {
+    background-color: #343a40;
+    color: #fff;
+}
+
+/* Status indicators */
+.status-completed {
+    color: green;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: orange;
+    font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .table {
+        font-size: 0.9rem;
+    }
+}
+/* Referral System Section Styling */
+.referral-box {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.referral-link {
+    flex: 1 1 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+}
+
+.copy-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.copy-btn:hover {
+    background-color: #0056b3;
+}
+
+.referral-stats p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 300px) {
+    .referral-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .copy-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* Support & Community Section */
+.support-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.support-box {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.support-box h5 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.support-box p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.support-box a.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .support-section .col-md-6 {
+        margin-bottom: 20px;
+    }
+}
+
+/* Dashboard Footer */
+.dashboard-footer {
+    background-color: #343a40; /* Dark grey background */
+    color: #ffffff;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.dashboard-footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.dashboard-footer a {
+    color: #ffcc00;  /* Gold highlight for links */
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
+}
+
+.dashboard-footer a:hover {
+    text-decoration: underline;
+}
+
+.fund-management {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.fund-form {
+    max-width: 400px;
+    margin: auto;
+}
+
+.fund-form .form-control,
+.fund-form .form-select {
+    width: 100%;
+    text-align: center;
+}
+
+.fund-form button {
+    width: 120px;
+}
