@@ -5,3 +5,4 @@ from .dashboard import dashboard
 from .investments import investments
 from .transactions import transactions
 from .profile import profile
+from .admin import admin
