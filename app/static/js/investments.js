@@ -43,3 +43,25 @@ function calculateInvestment() {
 
     document.getElementById("investment-result").innerHTML = `<p>Estimated Future Value: <strong>$${finalValue}</strong></p>`;
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get all "Invest Now" buttons
+    const investButtons = document.querySelectorAll(".invest-now-btn");
+
+    investButtons.forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default anchor behavior
+
+            // Get asset name from the button's data-attribute
+            const assetName = this.getAttribute("data-asset") || "Investment Package";
+
+            // Update modal title and content dynamically
+            document.getElementById("investmentModalTitle").innerText = `Invest in ${assetName}`;
+            document.getElementById("investmentModalText").innerText = `Explore investment options in ${assetName} and grow your portfolio.`;
+
+            // Show the modal
+            const investmentModal = new bootstrap.Modal(document.getElementById("investmentModal"));
+            investmentModal.show();
+        });
+    });
+});

@@ -127,79 +127,69 @@
         <div class="row">
             <div class="col-lg-4 col-md-6">
                 <div class="investment-card">
-                    <i class="fa-solid fa-building fa-4x"></i>                    <h3>Real Estate</h3>
+                    <i class="fa-solid fa-building fa-4x"></i>
+                    <h3>Real Estate</h3>
                     <p>Invest in property for long-term financial growth and stability.</p>
-                    <a href="#register" class="btn btn-primary">Invest Now</a>
+                    <button class="btn btn-primary invest-btn" data-asset="Real Estate">Invest Now</button>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="investment-card">
-                    <i class="fa-brands fa-btc fa-4x"></i>                    <h3>Cryptocurrency</h3>
+                    <i class="fa-brands fa-btc fa-4x"></i>
+                    <h3>Cryptocurrency</h3>
                     <p>Join the digital currency market and maximize your returns.</p>
-                    <a href="#register" class="btn btn-primary">Invest Now</a>
+                    <button class="btn btn-primary invest-btn" data-asset="Cryptocurrency">Invest Now</button>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="investment-card">
-                    <i class="fa-solid fa-coins fa-4x"></i>                    <h3>Gold</h3>
+                    <i class="fa-solid fa-coins fa-4x"></i>
+                    <h3>Gold</h3>
                     <p>Gold investments provide security and hedge against inflation.</p>
-                    <a href="#register" class="btn btn-primary">Invest Now</a>
+                    <button class="btn btn-primary invest-btn" data-asset="Gold">Invest Now</button>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="investment-card">
-                    <i class="fa-solid fa-money-bill-trend-up fa-4x"></i>                    <h3>Stock Market</h3>
+                    <i class="fa-solid fa-money-bill-trend-up fa-4x"></i>
+                    <h3>Stock Market</h3>
                     <p>Trade stocks and build a diverse portfolio for maximum profit.</p>
-                    <a href="#register" class="btn btn-primary">Invest Now</a>
+                    <button class="btn btn-primary invest-btn" data-asset="Stock Market">Invest Now</button>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="investment-card">
-                    <i class="fa-solid fa-robot fa-4x"></i>                    <h3>AI Investments</h3>
+                    <i class="fa-solid fa-robot fa-4x"></i>
+                    <h3>AI Investments</h3>
                     <p>Leverage artificial intelligence to make smart and automated investments.</p>
-                    <a href="#register" class="btn btn-primary">Invest Now</a>
+                    <button class="btn btn-primary invest-btn" data-asset="AI Investments">Invest Now</button>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- How It Works Section -->
-<section id="how-it-works" class="how-it-works">
-    <div class="container">
-        <div class="section-title">
-            <h2>How It Works</h2>
-            <p>Follow these simple steps to start investing with ease</p>
+
+<!-- Investment Modal -->
+<div id="investment-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Investment Packages for <span id="asset-name"></span></h2>
+        <div id="investment-options">
+            <!-- Packages will be inserted dynamically -->
         </div>
-        <div class="steps-wrapper">
-            <div class="step">
-                <div class="step-icon"><i class="fas fa-user-check"></i></div>
-                <h4>Register & Verify</h4>
-                <p>Create an account and complete KYC</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="fas fa-chart-line"></i></div>
-                <h4>Choose Investment</h4>
-                <p>Select from available options</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="fas fa-wallet"></i></div>
-                <h4>Deposit Funds</h4>
-                <p>Pay using bank, card, or crypto</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="fas fa-chart-bar"></i></div>
-                <h4>Monitor Growth</h4>
-                <p>Track investments from your dashboard</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="fas fa-money-bill-wave"></i></div>
-                <h4>Withdraw Profits</h4>
-                <p>Request payouts anytime</p>
-            </div>
-        </div>
+        <button id="proceed-to-payment" class="btn btn-success">Proceed to Payment</button>
     </div>
-</section>
+</div>
+
+<!-- Modal Styling -->
+<style>
+    .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); }
+    .modal-content { background-color: #fff; padding: 20px; margin: 15% auto; width: 50%; border-radius: 10px; }
+    .close { float: right; font-size: 28px; cursor: pointer; }
+</style>
+
+
 
 <!-- Why Choose Us Section -->
 <section id="why-choose-us" class="why-choose-us">
@@ -767,6 +757,80 @@
     // Initial call
     updateBTCStats();
 </script>
+
+
+<!-- JavaScript for Modal Interaction -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const investButtons = document.querySelectorAll(".invest-btn");
+        const modal = document.getElementById("investment-modal");
+        const closeModal = document.querySelector(".close");
+        const assetName = document.getElementById("asset-name");
+        const investmentOptions = document.getElementById("investment-options");
+        const proceedToPayment = document.getElementById("proceed-to-payment");
+
+        const packages = {
+            "Real Estate": [{ name: "Starter", price: "$500" }, { name: "Pro", price: "$2000" }],
+            "Cryptocurrency": [{ name: "Basic", price: "$100" }, { name: "Advanced", price: "$1000" }],
+            "Gold": [{ name: "Gold Saver", price: "$200" }, { name: "Gold Max", price: "$1500" }],
+            "Stock Market": [{ name: "Investor", price: "$300" }, { name: "Stock Expert", price: "$2500" }],
+            "AI Investments": [{ name: "AI Beginner", price: "$400" }, { name: "AI Master", price: "$5000" }]
+        };
+
+        investButtons.forEach(button => {
+            button.addEventListener("click", function() {
+                let asset = this.getAttribute("data-asset");
+                assetName.innerText = asset;
+                investmentOptions.innerHTML = "";
+
+                packages[asset].forEach(plan => {
+                    let div = document.createElement("div");
+                    div.innerHTML = `<input type="radio" name="package" value="${plan.name}"> ${plan.name} - ${plan.price}`;
+                    investmentOptions.appendChild(div);
+                });
+
+                modal.style.display = "block";
+            });
+        });
+
+        closeModal.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        proceedToPayment.addEventListener("click", async function() {
+            let selectedPackage = document.querySelector('input[name="package"]:checked');
+            if (!selectedPackage) {
+                alert("Please select an investment package.");
+                return;
+            }
+
+            let asset = assetName.innerText;
+            let packageName = selectedPackage.value;
+
+            // Send request to backend to create Stripe session
+            let response = await fetch("/create-checkout-session", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ asset, packageName })
+            });
+
+            let data = await response.json();
+            if (data.url) {
+                window.location.href = data.url; // Redirect to Stripe Checkout
+            } else {
+                alert("Failed to initiate payment.");
+            }
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
+</script>
+
+
 
     
 </body>

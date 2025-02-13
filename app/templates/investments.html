@@ -43,7 +43,7 @@
         </div>
     </nav>
     
-<!-- Main Investments Container -->
+<<!-- Main Investments Container -->
 <div class="container investments-container mt-5 pt-5">
     <h2 class="text-center my-4">Investment Opportunities</h2>
     <div class="row">
@@ -56,7 +56,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Gold</h5>
                     <p class="card-text">Invest in gold for a stable and secure portfolio.</p>
-                    <a href="#" class="btn btn-primary">Invest Now</a>
+                    <a href="#" class="btn btn-primary invest-now-btn" data-asset="Gold">Invest Now</a>
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Artificial Intelligence</h5>
                     <p class="card-text">Harness the power of AI-driven market insights.</p>
-                    <a href="#" class="btn btn-primary">Invest Now</a>
+                    <a href="#" class="btn btn-primary invest-now-btn" data-asset="Artificial Intelligence">Invest Now</a>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Stock Market</h5>
                     <p class="card-text">Trade and invest in top-performing stocks.</p>
-                    <a href="#" class="btn btn-primary">Invest Now</a>
+                    <a href="#" class="btn btn-primary invest-now-btn" data-asset="Stock Market">Invest Now</a>
                 </div>
             </div>
         </div>
@@ -98,7 +98,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Real Estate</h5>
                     <p class="card-text">Secure your future with strategic property investments.</p>
-                    <a href="#" class="btn btn-primary">Invest Now</a>
+                    <a href="#" class="btn btn-primary invest-now-btn" data-asset="Real Estate">Invest Now</a>
                 </div>
             </div>
         </div>
@@ -112,12 +112,28 @@
                 <div class="card-body">
                     <h5 class="card-title">Cryptocurrency</h5>
                     <p class="card-text">Join the digital currency revolution.</p>
-                    <a href="#" class="btn btn-primary">Invest Now</a>
+                    <a href="#" class="btn btn-primary invest-now-btn" data-asset="Cryptocurrency">Invest Now</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Investment Modal -->
+<div class="modal fade" id="investmentModal" tabindex="-1" aria-labelledby="investmentModalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="investmentModalTitle">Invest in Asset</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="investmentModalText">Choose your investment package.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!-- Buy & Sell Assets Section -->
 <div class="container mt-5">
@@ -341,6 +357,9 @@
 
 
     <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
 </body>
