@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!-- Success Stories Section -->
+<section id="testimonials" class="testimonials" style="margin-top: 50px;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+            <p>See what our investors have to say about their experience.</p>
+        </div>
+
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active" id="item">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for ('static', filename='images/success3.jpg') }}" alt="Client Image">
+                        <p>"Investing in real estate through this platform has been life-changing! The returns are
+                            fantastic."</p>
+                        <h4>- Osebh Sampson</h4>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="carousel-item" id="item">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for ('static', filename='images/success6.jpg') }}" alt="Client Image">
+                        <p>"I started small with cryptocurrency investments, and now I’m seeing amazing profits!"
+                        </p>
+                        <h4>- Evelyn Adokiye</h4>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+                <div class="carousel-item" id="item">
+                    <div class="testimonial-content">
+                        <img src="{{ url_for ('static', filename='images/success4.webp') }}" alt="Client Image">
+                        <p>"The AI-driven investment system is impressive. It's like having an expert manage my
+                            portfolio!"</p>
+                        <h4>- Kalastino Dede</h4>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+    </div>
+</section>
+{% endblock content %}

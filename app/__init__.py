@@ -18,7 +18,8 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Import routes after initializing db to avoid circular imports
-from app.routes import *
+from app.routes.base import *
+from app.routes.user import *
 
 # Create database tables (ensure this runs only once)
 with app.app_context():

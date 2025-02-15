@@ -1,5 +1,5 @@
 from app import db
-from werkzeug.security import generate_password_hash, check_password_hash
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -13,10 +13,4 @@ class User(db.Model):
     password_hash = db.Column(db.String(120), nullable=False)
     dob = db.Column(db.Date, nullable=True)  # Allow null values
 
-    def set_password(self, password):
-        """Hash and store the user's password."""
-        self.password_hash = generate_password_hash(password)
 
-    def check_password(self, password):
-        """Verify the password."""
-        return check_password_hash(self.password_hash, password)

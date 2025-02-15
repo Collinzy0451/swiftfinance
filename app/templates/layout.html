@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAC Vest Inv</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Montserrat:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ url_for('static', filename='images/favicon_io/apple-touch-icon.png ') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ url_for('static', filename='images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ url_for('static', filename='images/favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='images/favicon_io/site.webmanifest') }}">
+
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top"
+            style="background-color: var(--alt-background-color);">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='images/logo6.png') }}" alt="Logo"
+                        style="height: 70px; width: auto;">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto" style="font-family: var(--nav-font); font-size: 16px;">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ url_for('home') }}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ url_for('about') }}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ url_for('investments') }}">Investments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ url_for('testimonials') }}">Testimonials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ url_for('contact') }}">Contact</a>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <a class="btn btn-warning text-dark fw-bold" href="{{ url_for ('login') }}">Login</a>
+                            <a class="btn btn-warning text-dark fw-bold" href="{{ url_for ('register') }}">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock content %}
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- About Us Column -->
+                <div class="footer-col logo-col">
+                    <img src="{{ url_for('static', filename='images/logo6.png') }}" alt="TrustFinance"
+                        class="footer-logo">
+                </div>
+                <!-- Quick Links Column -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#investment">Investments</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <!-- Contact Info Column -->
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: support@TrustFinance.com</li>
+                        <li>Phone: +123 456 7890</li>
+                        <li>Location: New York, USA</li>
+                    </ul>
+                </div>
+                <!-- Social Media Column -->
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 TrustFinance. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- live statistic js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const counters = document.querySelectorAll(".counter");
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute("data-target");
+                    const count = +counter.innerText;
+                    const increment = target / 100;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        });
+    </script>
+
+    <!-- Include Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Simulated Live Statistics Update
+            function updateStats() {
+                document.getElementById("total-investors").innerText = Math.floor(Math.random() * 5000) + "+";
+                document.getElementById("total-investments").innerText = "$" + (Math.floor(Math.random() * 10000000) + 1000000).toLocaleString() + "+";
+                document.getElementById("payouts-processed").innerText = "$" + (Math.floor(Math.random() * 5000000) + 500000).toLocaleString() + "+";
+            }
+            setInterval(updateStats, 5000);
+
+            // Market Chart Configuration
+            var ctx = document.getElementById("marketChart").getContext("2d");
+            var marketChart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+                    datasets: [{
+                        label: "Investment Growth ($)",
+                        data: [10000, 25000, 50000, 75000, 150000, 300000, 500000],
+                        borderColor: "#f1c40f",
+                        backgroundColor: "rgba(241, 196, 15, 0.2)",
+                        borderWidth: 2,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { grid: { display: false } },
+                        y: { grid: { color: "#333" } }
+                    }
+                }
+            });
+        });
+    </script>
+
+    <!-- btc live Market -->
+    <script>
+        function updateBTCStats() {
+            fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_market_cap=true&include_24hr_change=true")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("btc-price").innerText = `$${data.bitcoin.usd.toLocaleString()}`;
+                    document.getElementById("btc-change").innerText = `${data.bitcoin.usd_24h_change.toFixed(2)}%`;
+                    document.getElementById("btc-marketcap").innerText = `$${data.bitcoin.usd_market_cap.toLocaleString()}`;
+                })
+                .catch(error => console.error("Error fetching BTC data:", error));
+        }
+
+        // Refresh every 10 seconds
+        setInterval(updateBTCStats, 10000);
+
+        // Initial call
+        updateBTCStats();
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!-- Contact & Support Section -->
+<section id="contact-support" class="contact-support" style="margin-top: 50px;">
+    <div class="container">
+        <div class="section-title">
+            <h2>Contact & Support</h2>
+            <p>We're here to help. Get in touch with us anytime.</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form action="#" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="contact-details">
+                <h3>Contact Information</h3>
+                <p><i class="fas fa-envelope"></i> support@yourwebsite.com</p>
+                <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Investment Street, New York, USA</p>
+
+                <!-- Live Chat Option -->
+                <div class="live-chat">
+                    <a href="#" class="chat-button"><i class="fas fa-comments"></i> Live Chat</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
