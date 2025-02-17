@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Mac Vest Inv</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" >
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    
-      <!-- favicon -->
-      <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon_io/apple-touch-icon.png ') }}">
-      <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon_io/favicon-32x32.png') }}">
-      <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon_io/favicon-16x16.png') }}">
-      <link rel="manifest" href="{{ url_for('static', filename='images/favicon_io/site.webmanifest') }}">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ url_for('static', filename='images/favicon_io/apple-touch-icon.png ') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ url_for('static', filename='images/favicon_io/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ url_for('static', filename='images/favicon_io/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='images/favicon_io/site.webmanifest') }}">
 </head>
+
 <body>
     <div class="login-container">
         <div class="login-box">
             <h2>Welcome Back</h2>
             <p class="subtitle">Securely access your account</p>
+            <div style="display: flex; justify-content: center; color: red">
+                {% include 'flashMsg.html' %}
+            </div>
 
             <form action="{{ url_for('login') }}" method="POST">
                 <div class="input-group">
@@ -32,7 +40,8 @@
                 </div>
 
                 <div class="remember-forgot">
-                    <label><input type="checkbox"> Remember me</label>
+                    <label><input type="checkbox" name="rememberMe"> Remember
+                        me</label>
                     <a href="#">Forgot password?</a>
                 </div>
 
@@ -43,4 +52,5 @@
         </div>
     </div>
 </body>
+
 </html>

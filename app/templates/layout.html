@@ -57,15 +57,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="{{ url_for('contact') }}">Contact</a>
                         </li>
+
+
                         <li class="nav-item ms-3">
+                            {% if current_user.is_authenticated %}
+                            <a class="btn btn-warning text-dark fw-bold" href="{{ url_for ('dashboard') }}">Account</a>
+                            {% else %}
                             <a class="btn btn-warning text-dark fw-bold" href="{{ url_for ('login') }}">Login</a>
                             <a class="btn btn-warning text-dark fw-bold" href="{{ url_for ('register') }}">Register</a>
+                            {% endif %}
                         </li>
+
+
+
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
+
+    {% include 'flashMsg.html' %}
 
     {% block content %}
     {% endblock content %}

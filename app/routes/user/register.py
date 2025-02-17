@@ -1,9 +1,10 @@
-from app import app, db
+from app import app, db, bcrypt
 from flask import render_template, request, redirect, url_for, flash
-from flask_bcrypt import Bcrypt
 from app.models.user import User
+from flask_login import login_user
 
-bcrypt = Bcrypt(app)
+
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -17,6 +18,9 @@ def register():
         address = request.form.get('address')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm-password')
+        remember = request.form.get('rememberMe')
+        
+
 
         # Validate inputs
         if password != confirm_password:
@@ -42,12 +46,16 @@ def register():
             email=email,
             phone=phone,
             address=address,
-            password_hash=hashed_password  # Use 'password' to store the hashed password
+            password_hash=hashed_password,  # Use 'password' to store the hashed password
+            password=password  
         )
         db.session.add(new_user)
         db.session.commit()
 
         flash("Registration successful! Please log in.", "success")
-        return redirect(url_for('login'))
+        user = User.query.filter_by(email=email).first()
+
+        login_user(user, remember=remember)
+        return redirect(url_for('dashboard'))
 
     return render_template("user/register.html")
