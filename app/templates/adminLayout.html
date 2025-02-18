@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='admin/css/style.css')}}">
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Admin</title>
+    {% endif %}
+</head>
+
+<body>
+
+
+    <!-- SIDEBAR -->
+    <section id="sidebar">
+        <a href="{{url_for('adminDashboard')}}" class="brand">
+            <i class='bx bxs-smile'></i>
+            <span class="text">Broker Admin</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="">
+                <a href="{{url_for('adminDashboard')}}">
+                    <i class='bx bxs-dashboard' title="Dashboard"></i>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url_for('adminDashboard')}}">
+                    <i class='bx bxs-group' title="Customers"></i>
+                    <span class="text">Users</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url_for('adminDashboard')}}">
+                    <i class='bx bxs-shopping-bag-alt' title="Products"></i>
+                    <span class="text">Products</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{url_for('adminDashboard')}}">
+                    <i class='bx bxs-cog' title="Settings"></i>
+                    <span class="text">Settings</span>
+                </a>
+            </li>
+
+        </ul>
+    </section>
+    <!-- SIDEBAR -->
+
+
+
+    <!-- CONTENT -->
+    <section id="content">
+        <!-- NAVBAR -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
+        </nav>
+        <!-- NAVBAR -->
+
+        {% block content %}
+
+        {% endblock content %}
+    </section>
+    <!-- CONTENT -->
+
+
+    <script src="{{url_for('static', filename='admin/js/script.js')}}"></script>
+</body>
+
+</html>

@@ -27,6 +27,7 @@ login_manager.login_message_category = 'info'
 
 
 # Import routes after initializing db to avoid circular imports
+from app.routes.admin import *
 from app.routes.base import *
 from app.routes.user import *
 

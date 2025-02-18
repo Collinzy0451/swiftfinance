@@ -1,0 +1,77 @@
+{% extends 'adminLayout.html' %}
+{% block content %}
+<!-- MAIN -->
+<main>
+    {% include 'flashMsg.html' %}
+
+    <div class="head-title">
+        <div class="left">
+            <h1>Dashboard</h1>
+        </div>
+    </div>
+
+    <ul class="box-info">
+        <li>
+            <i class='bx bxs-calendar-check'></i>
+            <span class="text">
+                <h3>Orders</h3>
+                <p>New Order</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxs-group'></i>
+            <span class="text">
+                <h3>{{count_User}}</h3>
+                <p>Users</p>
+            </span>
+        </li>
+        <li>
+            <i class='bx bxs-dollar-circle'></i>
+            <span class="text">
+                <h3>$2,000</h3>
+                <p>Total Sales</p>
+            </span>
+        </li>
+    </ul>
+
+
+    <div class="table-data">
+        <div class="order">
+            <div class="head">
+                <h3>Users</h3>
+                <i class='bx bx-search'></i>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>
+                            <small>{{user.firstname}} {{user.lastname}}</small>
+                        </td>
+                        <td><small>{{user.email}}</small></td>
+                        <td><small>{{user.phone}}</small></td>
+                        <td><small>{{user.country}}</small></td>
+                        <td><small>{{user.state}}</small></td>
+                        <td><small>{{user.address}}</small></td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</main>
+<!-- MAIN -->
+{% endblock content %}

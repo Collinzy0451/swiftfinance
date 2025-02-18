@@ -10,3 +10,6 @@ from .user import register
 from .user import dashboard
 from .user import transactions
 from .user import profile
+
+
+from .admin import adminDashboard

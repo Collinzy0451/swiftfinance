@@ -36,9 +36,10 @@ def login():
 
     return render_template("user/login.html")
 
+
+
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
-    flash("Logout Successful", 'success')
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
