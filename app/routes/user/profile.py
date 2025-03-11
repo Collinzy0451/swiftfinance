@@ -3,7 +3,7 @@ from flask import render_template
 from flask_login import login_required, current_user
 
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 def profile():
     user = {
         "fname" : current_user.firstname,

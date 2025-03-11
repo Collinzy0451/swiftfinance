@@ -24,13 +24,13 @@ def register():
 
         # Validate inputs
         if password != confirm_password:
-            flash("Passwords do not match!", "error")
+            flash("Passwords do not match!", "danger")
             return redirect(url_for('register'))
 
         # Check if email exists
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            flash("Email already registered!", "error")
+            flash("Email already registered!", "danger")
             return redirect(url_for('register'))
 
         # Hash password

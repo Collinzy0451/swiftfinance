@@ -1,0 +1,56 @@
+{% extends 'user/profile.html' %}
+{% block content %}
+
+<!-- Security Settings -->
+<div id="content-security" class="profile-section ">
+    <h3>Security Settings</h3>
+
+    <!-- Change Password Form -->
+    <h5 class="mt-3">Change Password</h5>
+    <form id="change-password-form">
+        <div class="mb-3">
+            <label class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="current-password" placeholder="Enter current password"
+                required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">New Password</label>
+            <input type="password" class="form-control" id="new-password" placeholder="Enter new password" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Confirm New Password</label>
+            <input type="password" class="form-control" id="confirm-password" placeholder="Confirm new password"
+                required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Password</button>
+        <p id="password-message" class="text-danger mt-2"></p>
+    </form>
+
+    <hr>
+
+    <!-- Enable/Disable 2FA -->
+    <h5 class="mt-3">Two-Factor Authentication (2FA)</h5>
+    <p>Enhance account security by enabling Two-Factor Authentication.</p>
+    <button id="toggle-2fa" class="btn btn-warning">Enable 2FA</button>
+    <p id="2fa-status" class="mt-2"></p>
+
+    <hr>
+
+    <!-- View Recent Login Activity -->
+    <h5 class="mt-3">Recent Login Activity</h5>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Device</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody id="login-activity">
+            <!-- Login history will be inserted here dynamically -->
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock content %}
