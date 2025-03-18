@@ -7,10 +7,14 @@ from .base import testimonials
 
 from .user import login
 from .user import register
+
 from .user import dashboard
 from .user import transactions
 from .user import profile
 from .user import investment
+
+
+from ._user import dashboard
 
 
 from .admin import adminDashboard

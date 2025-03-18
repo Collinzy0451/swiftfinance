@@ -30,6 +30,7 @@ login_manager.login_message_category = 'info'
 from app.routes.admin import *
 from app.routes.base import *
 from app.routes.user import *
+from app.routes._user import *
 
 # Create database tables (ensure this runs only once)
 with app.app_context():
