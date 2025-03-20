@@ -5,3 +5,6 @@ from .register import register
 from .transactions import transactions
 from .investment import investment
 from .settings import settings
+from .deposit import deposit
+from .withdraw import withdraw
+from .contact import contactUs

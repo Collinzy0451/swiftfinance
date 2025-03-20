@@ -11,7 +11,11 @@ from .user import dashboard
 from .user import transactions
 from .user import profile
 from .user import investment
-from .user import dashboard
+from .user import deposit
+from .user import settings
+from .user import withdraw
+from .user import contact
+
 
 
 from .admin import adminDashboard
