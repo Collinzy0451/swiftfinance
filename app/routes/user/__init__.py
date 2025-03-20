@@ -1,4 +1,4 @@
-from .dashboard import dashboard
+from .dashboard import userDashboard
 from .login import login
 from .profile import profile
 from .register import register
