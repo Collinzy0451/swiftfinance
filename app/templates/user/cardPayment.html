@@ -1,0 +1,57 @@
+{% extends 'user/user_layout.html' %}
+
+{% block content %}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Deposit Funds</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Deposit</li>
+                <li class="breadcrumb-item active">Card Deposit</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Deposit via Credit/Debit Card</h5>
+
+                        <!-- Multi Columns Form -->
+                        <form class="row g-3">
+                            <div class="col-12">
+                                <label for="inputAddress2" class="form-label">Amount ($)</label>
+                                <input type="number" class="form-control" id="inputAddress2">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCity" class="form-label">Card Number</label>
+                                <input type="text" class="form-control" id="inputCity">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="inputState" class="form-label">Exp. Date</label>
+                                <input type="date" class="form-control" id="inputCity">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="inputZip" class="form-label">cvv</label>
+                                <input type="text" class="form-control" id="inputZip">
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Make Payment</button>
+                            </div>
+                        </form><!-- End Multi Columns Form -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content %}

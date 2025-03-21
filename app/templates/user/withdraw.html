@@ -1,4 +1,90 @@
 {% extends 'user/user_layout.html' %}
 
 {% block content %}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Withdraw Funds</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Components</li>
+                <li class="breadcrumb-item active">Modal</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <!-- deposit -->
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Via Credit/Debit card</h5>
+
+                        <a href="{{ url_for('cardWithdraw')}}" class="text-dark">
+                            <div style="padding: 1.5rem; border-radius: 1rem;" class="border border-primary">
+                                <div class="">
+                                    <p>Deposit via the following payment methods:</p>
+                                </div>
+                                <div style="padding-top: 0.5rem; display: flex;">
+                                    <strong>Credit/Debit Card</strong>
+                                    <img style="border-radius: 3px; padding-left: 0.4rem; width: 8rem; height: 4rem;"
+                                        src="../../static/images/user/visa.png" alt="">
+
+                                </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Via cryptocurrencies</h5>
+
+                        <a href="{{ url_for('cryptoWithdraw')}}" class="text-dark">
+                            <div style="padding: 1.5rem; border-radius: 1rem;" class="border border-primary">
+                                <div class="">
+                                    <p>We accept the following cryptocurrencies:</p>
+                                </div>
+                                <div style="padding-top: 0.5rem; display: flex; justify-content: space-around;">
+
+                                    <style>
+                                        .crypt {
+                                            width: 2.5rem;
+                                            height: 2.5rem;
+                                        }
+                                    </style>
+
+                                    <div>
+                                        <img class="crypt" src="../../static/images/user/btc.png" alt="">
+                                        <strong><small>BTC</small></strong>
+                                    </div>
+                                    <div>
+                                        <img class="crypt" src="../../static/images/user/eth.png" alt="">
+                                        <strong><small>ETH</small></strong>
+                                    </div>
+                                    <div>
+                                        <img class="crypt" src="../../static/images/user/bnb.png" alt="">
+                                        <strong><small>BNB</small></strong>
+                                    </div>
+                                    <div>
+                                        <img class="crypt" src="../../static/images/user/ltc.png" alt="">
+                                        <strong><small>LTC</small></strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- end deposit -->
+
+
+</main><!-- End #main -->
+
 {% endblock content %}

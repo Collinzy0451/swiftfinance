@@ -11,7 +11,13 @@
                     <div class="hero-content">
                         <h1>Invest in Real Estate</h1>
                         <p>Build wealth through strategic property investments.</p>
-                        <a href="#register" class="btn btn-primary">Start Investing Today</a>
+
+
+                        {% if current_user.is_authenticated %}
+                        <a href="{{url_for('userDashboard')}}" class="btn btn-primary">Start Investing Today</a>
+                        {% else %}
+                        <a href="{{url_for('login')}}" class="btn btn-primary">Start Investing Today</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -20,7 +26,11 @@
                     <div class="hero-content">
                         <h1>Secure Your Wealth with Gold</h1>
                         <p>Gold investments offer stability and long-term value.</p>
-                        <a href="#register" class="btn btn-primary">Start Investing Today</a>
+                        {% if current_user.is_authenticated %}
+                        <a href="{{url_for('userDashboard')}}" class="btn btn-primary">Start Investing Today</a>
+                        {% else %}
+                        <a href="{{url_for('login')}}" class="btn btn-primary">Start Investing Today</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -29,7 +39,11 @@
                     <div class="hero-content">
                         <h1>Cryptocurrency Revolution</h1>
                         <p>Join the digital currency market and maximize returns.</p>
-                        <a href="#register" class="btn btn-primary">Start Investing Today</a>
+                        {% if current_user.is_authenticated %}
+                        <a href="{{url_for('userDashboard')}}" class="btn btn-primary">Start Investing Today</a>
+                        {% else %}
+                        <a href="{{url_for('login')}}" class="btn btn-primary">Start Investing Today</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

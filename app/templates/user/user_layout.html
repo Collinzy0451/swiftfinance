@@ -213,7 +213,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link " href="{{ url_for('userDashboard') }}">
+                <a class="nav-link collapsed" href="{{ url_for('userDashboard') }}">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
@@ -223,7 +223,7 @@
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url_for('deposit') }}">
+                <a class="nav-link collapsed " href="{{ url_for('deposit') }}">
                     <i class="bi bi-person"></i>
                     <span>Deposit</span>
                 </a>
@@ -270,6 +270,19 @@
             </li><!-- End Blank Page Nav -->
 
         </ul>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const links = document.querySelectorAll(".sidebar-nav .nav-link");
+                links.forEach(link => {
+                    if (link.href === window.location.href) {
+                        link.classList.remove("collapsed");
+                        link.classList.add("active");
+                    }
+                });
+            });
+
+
+        </script>
 
     </aside><!-- End Sidebar-->
 

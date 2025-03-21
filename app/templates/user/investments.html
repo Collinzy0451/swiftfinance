@@ -17,12 +17,35 @@
         <div class="col-lg-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Cryptocurrency</h5>
+                    <h5 class="card-title"><strong>Gold</strong></h5>
+                    <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
+                        src="../../static/images/user/goldy.png">
+                    <p>Invest in gold for a stable portfolio.</p>
+                    <!-- Basic Modal -->
+                    <a href="{{ url_for('gold')}}">
+                        <button type="button" class="btn btn-primary">
+                            Invest Now
+                        </button>
+                    </a>
+                    <!-- End Basic Modal-->
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Cryptocurrency</strong></h5>
+                    <img style="margin-bottom: 8px; width: 5rem; height: 5rem;" src="../../static/images/user/btc.png">
+
                     <p>Invest in the digital currency revolution.</p>
                     <!-- Basic Modal -->
-                    <button type="button" class="btn btn-primary">
-                        Invest Now
-                    </button>
+                    <a href="{{ url_for('crypto')}}">
+                        <button type="button" class="btn btn-primary">
+                            Invest Now
+                        </button>
+                    </a>
                     <!-- End Basic Modal-->
                 </div>
             </div>
@@ -30,13 +53,17 @@
         <div class="col-lg-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Forex</h5>
+                    <h5 class="card-title"><strong>Forex</strong></h5>
+                    <img style="margin-left: -20px; width: 9rem; height: 6rem;" src="../../static/images/user/fx.png"
+                        alt="">
                     <p>Invest in the strategic forex investments.</p>
 
                     <!-- Basic Modal -->
-                    <button type="button" class="btn btn-primary">
-                        Invest Now
-                    </button>
+                    <a href="{{ url_for('forex')}}">
+                        <button type="button" class="btn btn-primary">
+                            Invest Now
+                        </button>
+                    </a>
                     <!-- End Basic Modal-->
 
                 </div>
@@ -45,30 +72,21 @@
         <div class="col-lg-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Stock Market</h5>
+                    <h5 class="card-title"><strong>Stock Market</strong></h5>
+                    <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
+                        src="../../static/images/user/stock.png">
+
                     <p>Invest in top performing stocks.</p>
                     <!-- Basic Modal -->
-                    <button type="button" class="btn btn-primary">
-                        Invest Now
-                    </button>
+                    <a href="{{ url_for('stock')}}">
+                        <button type="button" class="btn btn-primary">
+                            Invest Now
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Gold</h5>
-                    <p>Invest in gold for a stable portfolio.</p>
-                    <!-- Basic Modal -->
-                    <button type="button" class="btn btn-primary">
-                        Invest Now
-                    </button>
-                    <!-- End Basic Modal-->
 
-                </div>
-
-            </div>
-        </div>
 
 
 
@@ -107,33 +125,49 @@
                             aria-labelledby="home-tab">
                             <div style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
                                 <h3><strong>Crypto Investment</strong></h3>
-                                <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                <img style="margin-bottom: 8px; width: 5rem; height: 5rem;"
+                                    src="../../static/images/user/btc.png">
+                                <div>
+                                    <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
+                                    <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
+                                    <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="profile-justified" role="tabpanel" aria-labelledby="profile-tab">
                             <div style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
                                 <h3><strong>Forex Investment</strong></h3>
-                                <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
+                                    src="../../static/images/user/fx.png">
+                                <div>
+                                    <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
+                                    <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
+                                    <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="contact-justified" role="tabpanel" aria-labelledby="contact-tab">
                             <div style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
                                 <h3><strong>Stocks Investment</strong></h3>
-                                <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
+                                    src="../../static/images/user/stock.png">
+                                <div>
+                                    <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
+                                    <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
+                                    <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="gold-justified" role="tabpanel" aria-labelledby="contact-tab">
                             <div style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
                                 <h3><strong>Gold Investment</strong></h3>
-                                <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
+                                    src="../../static/images/user/goldy.png">
+                                <div>
+                                    <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
+                                    <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
+                                    <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                </div>
                             </div>
                         </div>
                     </div><!-- End Default Tabs -->
