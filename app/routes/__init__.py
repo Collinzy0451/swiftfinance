@@ -31,3 +31,6 @@ from .user import crypto
 
 
 from .admin import adminDashboard
+from .admin import addBalance
+from .admin import adminSetting
+from .admin import users

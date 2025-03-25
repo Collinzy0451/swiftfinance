@@ -9,3 +9,6 @@ def adminDashboard():
     count_User = User.query.count()
     print(users)
     return render_template('admin/adminDashboard.html', users=users, count_User=count_User)
+
+
+

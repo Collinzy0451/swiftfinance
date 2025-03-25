@@ -24,7 +24,13 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean(), default=False)
     remember_me = db.Column(db.Boolean(), default=False)
 
+    account_bal = db.Column(db.Integer(), default=0)
+    gold_bal = db.Column(db.Integer(), default=0)
+    crypto_bal = db.Column(db.Integer(), default=0)
+    forex_bal = db.Column(db.Integer(), default=0)
+    stock_bal = db.Column(db.Integer(), default=0)
+
     def __repr__(self):
-        return f"User_{self.id}('firstName-{self.firstname}', 'lastName-{self.lastname}', 'email-{self.email}', 'D.O.B-{self.dob}', 'phone-{self.phone}', 'country-{self.country}', 'state-{self.state}', 'address-{self.address}', 'password_hash-{self.password_hash}', 'is_admin-{self.is_admin}',)"
+        return f"User_{self.id}('firstName:{self.firstname}', 'lastName:{self.lastname}', 'email:{self.email}', 'account_bal:{self.account_bal}', 'gold_bal:{self.gold_bal}', 'crypto_bal:{self.crypto_bal}', 'forex_bal:{self.forex_bal}', 'stock_bal:{self.stock_bal}', 'D.O.B:{self.dob}', 'phone:{self.phone}', 'country:{self.country}', 'state:{self.state}', 'address:{self.address}', 'password_hash:{self.password_hash}', 'is_admin:{self.is_admin}',)"
 
 

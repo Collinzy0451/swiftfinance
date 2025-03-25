@@ -31,7 +31,7 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$14,500</h6>
+                                        <h6>${{current_user.account_bal}}</h6>
                                         <span class="text-success small pt-1 fw-bold">12%</span> <span
                                             class="text-muted small pt-2 ps-1">increase</span>
 
@@ -53,10 +53,18 @@
                                         <h6>Assets</h6>
                                     </li>
 
-                                    <li><a class="dropdown-item" href="{{url_for('gold')}}">Gold</a></li>
-                                    <li><a class="dropdown-item" href="{{url_for('crypto')}}">Crypto</a></li>
-                                    <li><a class="dropdown-item" href="{{url_for('forex')}}">Forex</a></li>
-                                    <li><a class="dropdown-item" href="{{url_for('stock')}}">Stock</a></li>
+                                    <li><a class="dropdown-item" href="{{url_for('gold')}}">Gold
+                                            <span>${{current_user.gold_bal}}</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{url_for('crypto')}}">Crypto
+                                            <span>${{current_user.crypto_bal}}</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{url_for('forex')}}">Forex
+                                            <span>${{current_user.forex_bal}}</span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{url_for('stock')}}">Stock
+                                            <span>${{current_user.stock_bal}}</span></a>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -69,7 +77,7 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$3,264</h6>
+                                        <h6>${{total_investment}}</h6>
                                         <span class="text-success small pt-1 fw-bold">8%</span> <span
                                             class="text-muted small pt-2 ps-1">increase</span>
 
@@ -144,35 +152,7 @@
                                     <th scope="row"><a href="#" class="fw-bold"
                                             style="text-decoration: none; color: black;">Gold</a>
                                     </th>
-                                    <td>$2,000</td>
-                                    <td>$2,400</td>
-                                    <td class="fw-bold">+2%</td>
-                                    <td>Active</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#" class="fw-bold"
-                                            style="text-decoration: none; color: black;">Artificial
-                                            Intelligence</a>
-                                    </th>
-                                    <td>$2,000</td>
-                                    <td>$2,400</td>
-                                    <td class="fw-bold text-danger">-4%</td>
-                                    <td class="text-danger">Closed</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#" class="fw-bold"
-                                            style="text-decoration: none; color: black;">Stock Market</a>
-                                    </th>
-                                    <td>$2,000</td>
-                                    <td>$2,400</td>
-                                    <td class="fw-bold">+2%</td>
-                                    <td>Active</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#" class="fw-bold"
-                                            style="text-decoration: none; color: black;">Real Estate</a>
-                                    </th>
-                                    <td>$2,000</td>
+                                    <td>${{current_user.gold_bal}}</td>
                                     <td>$2,400</td>
                                     <td class="fw-bold">+2%</td>
                                     <td>Active</td>
@@ -181,11 +161,30 @@
                                     <th scope="row"><a href="#" class="fw-bold"
                                             style="text-decoration: none; color: black;">Crypto</a>
                                     </th>
-                                    <td>$1,200</td>
-                                    <td>$1,400</td>
-                                    <td class="fw-bold">+1%</td>
+                                    <td>${{current_user.crypto_bal}}</td>
+                                    <td>$2,400</td>
+                                    <td class="fw-bold text-danger">-4%</td>
+                                    <td class="text-danger">Closed</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"><a href="#" class="fw-bold"
+                                            style="text-decoration: none; color: black;">Forex</a>
+                                    </th>
+                                    <td>${{current_user.forex_bal}}</td>
+                                    <td>$2,400</td>
+                                    <td class="fw-bold">+2%</td>
                                     <td>Active</td>
                                 </tr>
+                                <tr>
+                                    <th scope="row"><a href="#" class="fw-bold"
+                                            style="text-decoration: none; color: black;">Stocks</a>
+                                    </th>
+                                    <td>${{current_user.stock_bal}}</td>
+                                    <td>$2,400</td>
+                                    <td class="fw-bold">+2%</td>
+                                    <td>Active</td>
+                                </tr>
+
 
                             </tbody>
                         </table>
@@ -310,8 +309,9 @@
                             <img style="margin-bottom: 8px; width: 5rem; height: 5rem;"
                                 src="../../static/images/user/btc.png">
                             <div>
-                                <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
+                                <small><strong>Total Holdings:
+                                    </strong><span>${{current_user.crypto_bal}}</span></small><br>
+                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
                                 <small><strong>Current Value: </strong><span>$2,400</span></small>
                             </div>
 
@@ -342,8 +342,9 @@
                             <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
                                 src="../../static/images/user/fx.png">
                             <div>
-                                <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
+                                <small><strong>Total Holdings:
+                                    </strong><span>${{current_user.forex_bal}}</span></small><br>
+                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
                                 <small><strong>Current Value: </strong><span>$2,400</span></small>
                             </div>
                         </div>
@@ -373,8 +374,9 @@
                             <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
                                 src="../../static/images/user/stock.png">
                             <div>
-                                <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
+                                <small><strong>Total Holdings:
+                                    </strong><span>${{current_user.stock_bal}}</span></small><br>
+                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
                                 <small><strong>Current Value: </strong><span>$2,400</span></small>
                             </div>
                         </div>
@@ -404,8 +406,9 @@
                             <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
                                 src="../../static/images/user/goldy.png">
                             <div>
-                                <small><strong>Total Holdings: </strong><span>$2,000</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last month</span></small><br>
+                                <small><strong>Total Holdings:
+                                    </strong><span>${{current_user.gold_bal}}</span></small><br>
+                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
                                 <small><strong>Current Value: </strong><span>$2,400</span></small>
                             </div>
                         </div>

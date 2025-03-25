@@ -56,6 +56,6 @@ def register():
         user = User.query.filter_by(email=email).first()
 
         login_user(user, remember=remember)
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('userDashboard'))
 
     return render_template("user/register.html")
