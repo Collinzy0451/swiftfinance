@@ -3,8 +3,35 @@
 <!-- MAIN -->
 <main>
     {% include 'flashMsg.html' %}
+    <div class="head-title">
+        <div class="left">
+            <h1>Add Balance</h1>
+        </div>
+    </div>
 
-    <h1>add balance</h1>
+    <div class="table-data">
+        <div class="order">
+            <form action="{{ url_for('addBalance', user_id=user.id ) }}" method="POST">
+                <label for="amount">Account Balance</label><br>
+                <input name="account_bal" type="number" value="{{user.account_bal}}"><br><br>
+
+                <label for="amount">Gold Balance</label><br>
+                <input name="gold_bal" type="number" value="{{user.gold_bal}}"><br><br>
+
+                <label for="amount">Crypto Balance</label><br>
+                <input name="crypto_bal" type="number" value="{{user.crypto_bal}}"><br><br>
+
+                <label for="amount">Forex Balance</label><br>
+                <input name="forex_bal" type="number" value="{{user.forex_bal}}"><br><br>
+
+                <label for="amount">Stock Balance</label><br>
+                <input name="stock_bal" type="number" value="{{user.stock_bal}}"><br><br>
+                <button>Confirm Add</button>
+            </form>
+
+        </div>
+    </div>
+
 </main>
 <!-- MAIN -->
 {% endblock content %}

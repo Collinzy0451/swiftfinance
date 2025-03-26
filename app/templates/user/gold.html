@@ -28,7 +28,7 @@
                                 src="../../static/images/user/goldy.png">
                             <div>
                                 <small><strong>Total Holdings:
-                                    </strong><span>$2,000</span></small><br>
+                                    </strong><span>${{current_user.gold_bal}}</span></small><br>
                                 <small><strong>Past Performance: </strong><span>+20% last
                                         month</span></small><br>
                                 <small><strong>Current Value: </strong><span>$2,400</span></small>
@@ -36,17 +36,21 @@
 
                         </div>
                         <div class="">
-                            <form>
+                            <form action="{{url_for('gold')}}" method="POST">
                                 <div class="col-lg-12">
                                     <label for="inputAddress2" class="form-label"><strong>Amount
                                             ($)</strong></label>
-                                    <input type="number" class="form-control" placeholder="Enter Amount">
+                                    <input name="amount" type="number" class="form-control" placeholder="Enter Amount"
+                                        required>
+                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                        </strong><span>( Investment
+                                            amount should not exceed account bal. )</span></small>
                                 </div>
                                 <div class="col-lg-12 mt-4">
                                     <label for="inputCity" class="form-label"><strong>Duration
-                                        </strong><span><strong>(</strong><small>weekly</small><strong>)</strong></span></label>
-                                    <input type="number" class="form-control" id="inputCity"
-                                        placeholder="Enter Duration in weeks">
+                                        </strong><span style="color: gray;">(<small> weekly </small>)</span></label>
+                                    <input name="duration" type="number" class="form-control" id="inputCity"
+                                        placeholder="Enter Duration in weeks" required>
                                 </div>
 
                                 <div class="text-center mt-4">

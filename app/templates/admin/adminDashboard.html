@@ -50,25 +50,31 @@
                         <th>Country</th>
                         <th>State</th>
                         <th>Address</th>
+                        <th>Add Balance</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for user in users %}
+
                     <tr>
-                        <form action="{{ url_for('addBalance', user_id=user.id ) }}">
-                            <button type="submit">
-                                <td>
-                                    <small>{{user.firstname}} {{user.lastname}}</small>
-                                </td>
-                            </button>
-                        </form>
+
+
+                        <td>
+                            <small>{{user.firstname}} {{user.lastname}}</small>
+                        </td>
+
+
                         <td><small>{{user.email}}</small></td>
                         <td><small>{{user.phone}}</small></td>
                         <td><small>{{user.country}}</small></td>
                         <td><small>{{user.state}}</small></td>
                         <td><small>{{user.address}}</small></td>
+                        <td><a href="{{ url_for('addBalance', user_id=user.id ) }}"><button
+                                    style="padding: 3px; border-color: rgb(83, 133, 133);">Add
+                                    Balance</td>
 
                     </tr>
+
                     {% endfor %}
                 </tbody>
             </table>
