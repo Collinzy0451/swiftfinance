@@ -13,7 +13,7 @@ def stock():
         acc_bal = current_user.account_bal
         stock_bal = current_user.stock_bal
 
-        if invested_amount > acc_bal:
+        if invested_amount > acc_bal or invested_amount <= 0:
             flash('Investment amount cannot be greater than account balance', 'danger')
             return(redirect(url_for('stock')))
         

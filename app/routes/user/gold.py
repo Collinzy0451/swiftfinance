@@ -8,10 +8,11 @@ def gold():
     if request.method == "POST":
         invested_amount = float(request.form.get('amount', 0))  # Ensure default value
         duration = request.form.get('duration')
+
         acc_bal = current_user.account_bal
         gold_bal = current_user.gold_bal
 
-        if invested_amount > acc_bal:
+        if invested_amount > acc_bal or invested_amount <= 0:
             flash('Investment amount cannot be greater than account balance', 'danger')
             return(redirect(url_for('gold')))
         

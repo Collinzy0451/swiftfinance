@@ -6,6 +6,4 @@ from app.models.user import User
 @app.route('/deposit')
 @login_required
 def deposit():
-    
-
     return render_template("user/deposit.html")

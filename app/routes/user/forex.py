@@ -12,7 +12,7 @@ def forex():
         acc_bal = current_user.account_bal
         forex_bal = current_user.forex_bal
 
-        if invested_amount > acc_bal:
+        if invested_amount > acc_bal or invested_amount <= 0:
             flash('Investment amount cannot be greater than account balance', 'danger')
             return(redirect(url_for('forex')))
         

@@ -11,7 +11,7 @@ def crypto():
         acc_bal = current_user.account_bal
         crypto_bal = current_user.crypto_bal
 
-        if invested_amount > acc_bal:
+        if invested_amount > acc_bal or invested_amount <= 0:
             flash('Investment amount cannot be greater than account balance', 'danger')
             return(redirect(url_for('crypto')))
         

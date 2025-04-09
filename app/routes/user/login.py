@@ -4,16 +4,17 @@ from flask_login import login_user, current_user, logout_user, login_required
 from app.models.user import User
 
 @app.route("/login", methods=["POST", "GET"])
+
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
 
     if request.method == 'POST':
-        email = request.form.get('email')
+        em = request.form.get('email')
         password = request.form.get('password')
         remember = request.form.get('rememberMe')
 
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=em).first()
 
         if user:
             if bcrypt.check_password_hash(user.password_hash, password):

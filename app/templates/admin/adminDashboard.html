@@ -1,87 +1,380 @@
 {% extends 'admin/adminLayout.html' %}
+
 {% block content %}
-<!-- MAIN -->
-<main>
+<main id="main" class="main">
     {% include 'flashMsg.html' %}
 
-    <div class="head-title">
-        <div class="left">
-            <h1>Dashboard</h1>
-        </div>
-    </div>
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href="{{url_for('adminDashboard')}}">Dashboard</a></li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-    <ul class="box-info">
-        <li>
-            <i class='bx bxs-calendar-check'></i>
-            <span class="text">
-                <h3>Orders</h3>
-                <p>New Order</p>
-            </span>
-        </li>
-        <li>
-            <i class='bx bxs-group'></i>
-            <span class="text">
-                <h3>{{count_User}}</h3>
-                <p>Users</p>
-            </span>
-        </li>
-        <li>
-            <i class='bx bxs-dollar-circle'></i>
-            <span class="text">
-                <h3>$2,000</h3>
-                <p>Total Sales</p>
-            </span>
-        </li>
-    </ul>
+    <section class="section dashboard">
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-12">
+                <div class="row">
+                    <!-- account balance card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+
+                            <div class="card-body">
+                                <h5 class="card-title">Total Users</h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>00{{count_User}}</h6>
+                                        <!-- <span class="text-success small pt-1 fw-bold">12%</span> <span
+                                            class="text-muted small pt-2 ps-1">increase</span> -->
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- end account balance Card -->
+                    <!-- total investment Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card revenue-card">
+
+                            <div class="filter">
+                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                    <li class="dropdown-header text-start">
+                                        <h6>Assets</h6>
+                                    </li>
+
+                                    <li><a class="dropdown-item" href="{{url_for('gold')}}">Gold
+                                            <span><strong>${{current_user.gold_bal}}</strong></span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{url_for('crypto')}}">Crypto
+                                            <span><strong>${{current_user.crypto_bal}}</strong></span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{url_for('forex')}}">Forex
+                                            <span><strong>${{current_user.forex_bal}}</strong></span></a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{url_for('stock')}}">Stock
+                                            <span><strong>${{current_user.stock_bal}}</strong></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title">Total Investments</h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>${{acc_bal}}</h6>
+                                        <span class="text-success small pt-1 fw-bold">8%</span> <span
+                                            class="text-muted small pt-2 ps-1">increase</span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- End total investment Card -->
+                </div>
+            </div><!-- End Left side columns -->
 
 
-    <div class="table-data">
-        <div class="order">
-            <div class="head">
-                <h3>Users</h3>
-                <i class='bx bx-search'></i>
+
+
+
+
+
+
+            <div class="col-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Recent Users</h5>
+                        <hr>
+                        <!-- Accordion without outline borders -->
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+                            {% for user in users %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+
+                                        <div>
+                                            <img style="width: 2.5rem; height:2.5rem; border-radius: 50px;"
+                                                src="../../static/user/img/profile-img.jpg" alt="">
+                                        </div>
+
+                                        <div style="margin-left: 2%;">
+                                            <strong><small>{{user.firstname}} {{user.lastname}}</small></strong>
+                                        </div>
+                                        <div style="margin-left: 2%;">
+                                            <strong><small>{{user.email}}</small></strong>
+                                        </div>
+                                        <div style="margin-left: 2%;">
+                                            <strong><small>{{user.country}}</small></strong>
+                                        </div>
+
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+
+
+                                        <div class="card">
+                                            <div class="card-body">
+                                                
+                                                <!-- Default Tabs -->
+                                                <ul class="nav nav-tabs d-flex" id="myTabjustified" role="tablist">
+                                                    <li class="nav-item flex-fill" role="presentation">
+                                                        <button class="nav-link w-100 active" id="home-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#home-justified"
+                                                            type="button" role="tab" aria-controls="home"
+                                                            aria-selected="true">Crypto</button>
+                                                    </li>
+                                                    <li class="nav-item flex-fill" role="presentation">
+                                                        <button class="nav-link w-100" id="profile-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#profile-justified"
+                                                            type="button" role="tab" aria-controls="profile"
+                                                            aria-selected="false">Forex</button>
+                                                    </li>
+                                                    <li class="nav-item flex-fill" role="presentation">
+                                                        <button class="nav-link w-100" id="contact-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#contact-justified"
+                                                            type="button" role="tab" aria-controls="contact"
+                                                            aria-selected="false">Stock</button>
+                                                    </li>
+                                                    <li class="nav-item flex-fill" role="presentation">
+                                                        <button class="nav-link w-100" id="contact-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#gold-justified"
+                                                            type="button" role="tab" aria-controls="contact"
+                                                            aria-selected="false">Gold</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="tab-content pt-2" id="myTabjustifiedContent">
+                                                    <div class="tab-pane fade show active" id="home-justified"
+                                                        role="tabpanel" aria-labelledby="home-tab">
+                                                        <div
+                                                            style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
+                                                            <h3><strong>Crypto Investment</strong></h3>
+                                                            <img style="margin-bottom: 8px; width: 5rem; height: 5rem;"
+                                                                src="../../static/images/user/btc.png">
+                                                            <div>
+                                                                <small><strong>Total Holdings:
+                                                                    </strong><span>${{current_user.crypto_bal}}</span></small><br>
+                                                                <small><strong>Past Performance:
+                                                                    </strong><span>+20%</span></small><br>
+                                                                <small><strong>Current Value:
+                                                                    </strong><span>$2,400</span></small>
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="tab-pane fade" id="profile-justified" role="tabpanel"
+                                                        aria-labelledby="profile-tab">
+                                                        <div
+                                                            style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
+                                                            <h3><strong>Forex Investment</strong></h3>
+                                                            <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
+                                                                src="../../static/images/user/fx.png">
+                                                            <div>
+                                                                <small><strong>Total Holdings:
+                                                                    </strong><span>${{current_user.forex_bal}}</span></small><br>
+                                                                <small><strong>Past Performance:
+                                                                    </strong><span>+20%</span></small><br>
+                                                                <small><strong>Current Value:
+                                                                    </strong><span>$2,400</span></small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="contact-justified" role="tabpanel"
+                                                        aria-labelledby="contact-tab">
+                                                        <div
+                                                            style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
+                                                            <h3><strong>Stocks Investment</strong></h3>
+                                                            <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
+                                                                src="../../static/images/user/stock.png">
+                                                            <div>
+                                                                <small><strong>Total Holdings:
+                                                                    </strong><span>${{current_user.stock_bal}}</span></small><br>
+                                                                <small><strong>Past Performance:
+                                                                    </strong><span>+20%</span></small><br>
+                                                                <small><strong>Current Value:
+                                                                    </strong><span>$2,400</span></small>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="tab-pane fade" id="gold-justified" role="tabpanel"
+                                                        aria-labelledby="contact-tab">
+                                                        <div
+                                                            style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
+                                                            <h3><strong>Gold Investment</strong></h3>
+                                                            <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
+                                                                src="../../static/images/user/goldy.png">
+                                                            <div>
+                                                                <small><strong>Total Holdings:
+                                                                    </strong><span>${{current_user.gold_bal}}</span></small><br>
+                                                                <small><strong>Past Performance:
+                                                                    </strong><span>+20%</span></small><br>
+                                                                <small><strong>Current Value:
+                                                                    </strong><span>$2,400</span></small>
+                                                            </div>
+                                                        </div>
+                                                        <div class="">
+                                                            <form>
+                                                                <div class="col-lg-12">
+                                                                    <label for="inputAddress2"
+                                                                        class="form-label"><strong>Amount
+                                                                            ($)</strong></label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter Amount">
+                                                                </div>
+                                                                <div class="col-lg-12 mt-4">
+                                                                    <label for="inputCity"
+                                                                        class="form-label"><strong>Duration
+                                                                        </strong><span><strong>(</strong><small>weekly</small><strong>)</strong></span></label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="inputCity"
+                                                                        placeholder="Enter Duration in weeks">
+                                                                </div>
+
+                                                                <div class="text-center mt-4">
+                                                                    <button type="submit" class="btn btn-primary">Make
+                                                                        Payment</button>
+                                                                </div>
+                                                            </form><!-- End Multi Columns Form -->
+                                                        </div>
+                                                    </div>
+                                                </div><!-- End Default Tabs -->
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+
+
+                            <!-- <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                        Accordion Item #2
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Placeholder content for this accordion, which is
+                                        intended to
+                                        demonstrate the <code>.accordion-flush</code> class. This is the second item's
+                                        accordion body. Let's imagine this being filled with some actual content.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                        Accordion Item #3
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Placeholder content for this accordion, which is
+                                        intended to
+                                        demonstrate the <code>.accordion-flush</code> class. This is the third item's
+                                        accordion body. Nothing more exciting happening here in terms of content, but
+                                        just
+                                        filling up the space to make it look, at least at first glance, a bit more
+                                        representative of how this would look in a real-world application.</div>
+                                </div>
+                            </div> -->
+                            <!-- </div>End Accordion without outline borders -->
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Top Selling -->
+                <div class="col-12">
+                    <div class="card top-selling overflow-auto">
+
+
+
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Investment Portfolio <span>| Today</span></h5>
+
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr class="border border-dark">
+                                        <th scope="col">S/No.</th>
+                                        <th scope="col">Users</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Add Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    <tr>
+                                        <td>{{user.id}}</td>
+                                        <th scope="row"><a href="#" class="fw-bold"
+                                                style="text-decoration: none; color: black;">{{user.firstname}}
+                                                {{user.lastname}}</a>
+                                        </th>
+                                        <td>{{user.email}}</td>
+                                        <td><a href="{{ url_for('addBalance', user_id=user.id ) }}"><button
+                                                    style="padding: 3px; border-color: rgb(83, 133, 133);">Add
+                                                    Balance</td>
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div><!-- End Top Selling -->
+
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Country</th>
-                        <th>State</th>
-                        <th>Address</th>
-                        <th>Add Balance</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for user in users %}
-
-                    <tr>
 
 
-                        <td>
-                            <small>{{user.firstname}} {{user.lastname}}</small>
-                        </td>
 
+</main><!-- End #main -->
 
-                        <td><small>{{user.email}}</small></td>
-                        <td><small>{{user.phone}}</small></td>
-                        <td><small>{{user.country}}</small></td>
-                        <td><small>{{user.state}}</small></td>
-                        <td><small>{{user.address}}</small></td>
-                        <td><a href="{{ url_for('addBalance', user_id=user.id ) }}"><button
-                                    style="padding: 3px; border-color: rgb(83, 133, 133);">Add
-                                    Balance</td>
-
-                    </tr>
-
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-
-    </div>
-</main>
-<!-- MAIN -->
 {% endblock content %}

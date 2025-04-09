@@ -6,6 +6,4 @@ from app.models.user import User
 @app.route('/pay-with-crypto')
 @login_required
 def cryptoPayment():
-    
-
     return render_template("user/cryptoPayment.html")
