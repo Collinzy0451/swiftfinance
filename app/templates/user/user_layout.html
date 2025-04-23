@@ -251,6 +251,16 @@
                     <span>Withdraw</span>
                 </a>
             </li>
+
+            {% if current_user.is_admin %}
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url_for('adminDashboard') }}">
+                    <i class="bi bi-question-circle"></i>
+                    <span>Admin Panel</span>
+                </a>
+            </li>
+            {% else %}
+            {% endif %}
             <!-- End F.A.Q Page Nav -->
             <br>
             <hr>

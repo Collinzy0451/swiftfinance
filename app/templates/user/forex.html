@@ -5,12 +5,11 @@
 <main id="main" class="main">
     {% include 'flashMsg.html' %}
     <div class="pagetitle">
-        <h1>Deposit Funds</h1>
+        <h1>Invest In Forex</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Deposit</li>
-                <li class="breadcrumb-item active">Card Deposit</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -25,23 +24,35 @@
 
                         <div style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
                             <h3><strong>Forex Investment</strong></h3>
-                            <img style="margin-bottom: 8px; width: 5rem; height: 5rem;"
+                            <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
                                 src="../../static/images/user/fx.png">
                             <div>
-                                <small><strong>Total Holdings:
-                                    </strong><span>${{current_user.forex_bal}}</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20% last
-                                        month</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
-                            </div>
+                                <small><strong>Total Holdings =
+                                        <span><em style="color: gray;">
+                                                $ {{forex_investment.invested_amount}}</em></span></strong></small><br>
 
+                                <small><strong>Past Performance =
+                                        {% if forex_investment.percentage_increase and forex_investment.is_active %}
+                                        <span style="color: green;"><em> +
+                                                {{forex_investment.percentage_increase}}%</em></span></strong></small><br>
+
+                                {% elif forex_investment.percentage_decrease and forex_investment.is_active %}
+                                <span style="color: red;"><em> -
+                                        {{forex_investment.percentage_decrease}}%</em></span></strong></small><br>
+                                {% else %}
+                                <span style="color: gray;"><em> 0.00%</em></span></strong></small><br>
+                                {% endif %}
+                                <small><strong>Current Value =
+                                        <span><em style="color: gray;">
+                                                $ {{forex_investment.balance}}</em></span></strong></small>
+                            </div>
                         </div>
                         <div class="">
-                            <form action="{{url_for('forex')}}" method="POST">
+                            <form action="{{url_for('createForexInvestment')}}" method="POST">
                                 <div class="col-lg-12">
                                     <label for="inputAddress2" class="form-label"><strong>Amount
                                             ($)</strong></label>
-                                    <input name="amount" type="number" class="form-control" placeholder="Enter Amount"
+                                    <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
                                         required>
                                     <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
                                         </strong><span>( Investment
@@ -50,7 +61,7 @@
                                 <div class="col-lg-12 mt-4">
                                     <label for="inputCity" class="form-label"><strong>Duration
                                         </strong><span><strong>(</strong><small>weekly</small><strong>)</strong></span></label>
-                                    <input name="duration" type="number" class="form-control" id="inputCity"
+                                    <input type="number" name="duration" class="form-control" id="inputCity"
                                         placeholder="Enter Duration in weeks" required>
                                 </div>
 

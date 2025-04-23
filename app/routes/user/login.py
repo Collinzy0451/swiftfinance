@@ -26,7 +26,7 @@ def login():
                 else:
                     if user.is_admin:
                         flash('Admin Logged In Successfully', 'success')
-                        return redirect(url_for('userDashboard'))  # Change to your admin dashboard route
+                        return redirect(url_for('adminDashboard'))  # Change to your admin dashboard route
                     else:
                         flash('You have successfully Logged In', 'success')
                         return redirect(url_for('userDashboard'))  # Change to your user dashboard route

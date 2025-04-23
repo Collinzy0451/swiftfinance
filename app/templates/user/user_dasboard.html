@@ -31,9 +31,7 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>${{current_user.account_bal}}</h6>
-                                        <span class="text-success small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">increase</span>
+                                        <h6>${{'{:.2f}'.format(current_user.account_bal)}}</h6>
 
                                     </div>
                                 </div>
@@ -52,19 +50,11 @@
                                     <li class="dropdown-header text-start">
                                         <h6>Assets</h6>
                                     </li>
-
-                                    <li><a class="dropdown-item" href="{{url_for('gold')}}">Gold
-                                            <span><strong>${{current_user.gold_bal}}</strong></span></a>
+                                    {% for z in investments %}
+                                    <li><a class="dropdown-item" href="{{url_for('gold')}}">{{z.type.name}}
+                                            <span><strong>${{z.balance}}</strong></span></a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{url_for('crypto')}}">Crypto
-                                            <span><strong>${{current_user.crypto_bal}}</strong></span></a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{url_for('forex')}}">Forex
-                                            <span><strong>${{current_user.forex_bal}}</strong></span></a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="{{url_for('stock')}}">Stock
-                                            <span><strong>${{current_user.stock_bal}}</strong></span></a>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
 
@@ -77,7 +67,7 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>${{total_investment}}</h6>
+                                        <h6>${{total_investment_balance}}</h6>
                                         <span class="text-success small pt-1 fw-bold">8%</span> <span
                                             class="text-muted small pt-2 ps-1">increase</span>
 
@@ -131,9 +121,6 @@
             <!-- Top Selling -->
             <div class="col-12">
                 <div class="card top-selling overflow-auto">
-
-
-
                     <div class="card-body pb-0">
                         <h5 class="card-title">Investment Portfolio <span>| Today</span></h5>
 
@@ -145,130 +132,132 @@
                                     <th scope="col">Current Value</th>
                                     <th scope="col">Profit/Loss (%)</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for z in investments %}
                                 <tr>
-                                    <th scope="row"><a href="#" class="fw-bold"
-                                            style="text-decoration: none; color: black;">Gold</a>
-                                    </th>
-                                    <td>${{current_user.gold_bal}}</td>
-                                    <td>$2,400</td>
-                                    <td class="fw-bold">+2%</td>
-                                    <td>Active</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#" class="fw-bold"
-                                            style="text-decoration: none; color: black;">Crypto</a>
-                                    </th>
-                                    <td>${{current_user.crypto_bal}}</td>
-                                    <td>$2,400</td>
-                                    <td class="fw-bold text-danger">-4%</td>
-                                    <td class="text-danger">Closed</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#" class="fw-bold"
-                                            style="text-decoration: none; color: black;">Forex</a>
-                                    </th>
-                                    <td>${{current_user.forex_bal}}</td>
-                                    <td>$2,400</td>
-                                    <td class="fw-bold">+2%</td>
-                                    <td>Active</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#" class="fw-bold"
-                                            style="text-decoration: none; color: black;">Stocks</a>
-                                    </th>
-                                    <td>${{current_user.stock_bal}}</td>
-                                    <td>$2,400</td>
-                                    <td class="fw-bold">+2%</td>
-                                    <td>Active</td>
-                                </tr>
+                                    <th scope="row"><a style="text-decoration: none; color: black;" href="">
+                                            <div><img
+                                                    src="{{url_for('static', filename='images/investment_type/' + z.type.logo)}}"
+                                                    style="width: 25px; height: 25px; margin-right: 5px;"><span>{{z.type.name}}</span>
+                                            </div>
+                                        </a></th>
 
+                                    {% if not z.is_active %}
+                                    <td><strong style="color: gray;">$<small>{{z.invested_amount}}</small></strong></td>
+                                    {% else %}
+                                    <td><strong>$<small>{{z.invested_amount}}</small></strong></td>
+                                    {% endif %}
 
+                                    {% if not z.is_active %}
+                                    <td><strong style="color: gray;">$<small>{{z.balance}}</small></strong></td>
+                                    {% else %}
+                                    <td><strong>$<small>{{z.balance}}</small></strong></td>
+                                    {% endif %}
+
+                                    {% if z.percentage_increase and z.is_active %}
+                                    <td class="fw-bold">
+                                        <div style="color:green;">
+                                            +{{z.percentage_increase}} %
+                                        </div>
+                                    </td>
+                                    {% elif z.percentage_decrease and z.is_active %}
+                                    <td class="fw-bold">
+                                        <div style="color: red;">
+                                            -{{z.percentage_decrease}} %
+                                        </div>
+                                    </td>
+                                    {% else %}
+                                    <td class="fw-bold">
+                                        <div style="color: gray;">
+                                            {% if not z.is_active %}
+                                            <strong>0.00 %</strong>
+
+                                            {% else %}
+                                            <strong style="color: black;">0.00 %</strong>
+                                            {% endif %}
+                                        </div>
+                                    </td>
+                                    {% endif %}
+
+                                    {% if z.is_active %}
+                                    <td>
+                                        <div style="color: green;">
+                                            <strong><em>Running...</em></strong>
+                                        </div>
+                                    </td>
+                                    {% else %}
+                                    <td>
+                                        <div style="color: red;">
+                                            <strong>Closed</strong>
+                                        </div>
+                                    </td>
+                                    {% endif %}
+                                    <td>
+                                        <div>
+                                            <form action="{{ url_for('closeInvestment') }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to close this investment?');">
+                                                <input type="hidden" name="investment_id" value="{{ z.id }}">
+                                                <button class="btn btn-outline-secondary btn-sm" {% if not z.is_active
+                                                    %}disabled{% endif %}>
+                                                    <small>Close</small>
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
-
                     </div>
-
                 </div>
             </div><!-- End Top Selling -->
-
         </div>
         <div class="row">
+            {% for i in investment_types %}
             <div class="col-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title"><strong>Gold</strong></h5>
-                        <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
-                            src="../../static/images/user/goldy.png">
-                        <p>Invest in gold for a stable portfolio.</p>
+                        <h5 class="card-title"><strong>{{i.name}}</strong></h5>
+                        <img style="margin-bottom: 8px; width: 5rem; height: 5rem;"
+                            src="{{url_for('static', filename='images/investment_type/' + i.logo)}}">
+                        <p>{{i.description}}</p>
                         <!-- Basic Modal -->
+                        {% if i.name == "Gold" %}
                         <a href="{{ url_for('gold')}}">
                             <button type="button" class="btn btn-primary">
                                 Invest Now
                             </button>
                         </a>
-                        <!-- End Basic Modal-->
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>Cryptocurrency</strong></h5>
-                        <img style="margin-bottom: 8px; width: 5rem; height: 5rem;"
-                            src="../../static/images/user/btc.png">
-
-                        <p>Invest in the digital currency revolution.</p>
-                        <!-- Basic Modal -->
+                        {% elif i.name == "Crypto" %}
                         <a href="{{ url_for('crypto')}}">
                             <button type="button" class="btn btn-primary">
                                 Invest Now
                             </button>
                         </a>
-                        <!-- End Basic Modal-->
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>Forex</strong></h5>
-                        <img style="margin-left: -20px; width: 9rem; height: 6rem;"
-                            src="../../static/images/user/fx.png" alt="">
-                        <p>Invest in the strategic forex investments.</p>
-
-                        <!-- Basic Modal -->
+                        {% elif i.name == "Forex" %}
                         <a href="{{ url_for('forex')}}">
                             <button type="button" class="btn btn-primary">
                                 Invest Now
                             </button>
                         </a>
-                        <!-- End Basic Modal-->
-
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>Stock Market</strong></h5>
-                        <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
-                            src="../../static/images/user/stock.png">
-
-                        <p>Invest in top performing stocks.</p>
-                        <!-- Basic Modal -->
+                        {% elif i.name == "Stocks" %}
                         <a href="{{ url_for('stock')}}">
                             <button type="button" class="btn btn-primary">
                                 Invest Now
                             </button>
                         </a>
+                        {% endif %}
+                        <!-- End Basic Modal-->
+
                     </div>
+
                 </div>
             </div>
+            {% endfor %}
         </div>
     </section>
 
@@ -309,25 +298,44 @@
                             <img style="margin-bottom: 8px; width: 5rem; height: 5rem;"
                                 src="../../static/images/user/btc.png">
                             <div>
-                                <small><strong>Total Holdings:
-                                    </strong><span>${{current_user.crypto_bal}}</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                <small><strong>Total Holdings =<span><em style="color: gray;">$
+                                                {{crypto_investment.invested_amount}}</em></span></strong></small><br>
+
+
+                                <small><strong>Past Performance =
+                                        {% if crypto_investment.percentage_increase and crypto_investment.is_active %}
+                                        <span style="color: green;"><em> +
+                                                {{crypto_investment.percentage_increase}}%</em></span></strong></small><br>
+
+                                {% elif crypto_investment.percentage_decrease and crypto_investment.is_active %}
+                                <span style="color: red;"><em> -
+                                        {{crypto_investment.percentage_decrease}}%</em></span></strong></small><br>
+                                {% else %}
+                                <span style="color: gray;"><em> 0.00%</em></span></strong></small><br>
+                                {% endif %}
+
+
+                                <small><strong>Current Value =<span><em style="color: gray;">$
+                                                {{crypto_investment.balance}}</em></span></strong></small>
                             </div>
 
                         </div>
                         <div class="">
-                            <form>
+                            <form action="{{url_for('createCryptoInvestment')}}" method="POST">
                                 <div class="col-lg-12">
                                     <label for="inputAddress2" class="form-label"><strong>Amount
                                             ($)</strong></label>
-                                    <input type="number" class="form-control" placeholder="Enter Amount">
+                                    <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
+                                        required>
+                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                        </strong><span>( Investment
+                                            amount should not exceed account bal. )</span></small>
                                 </div>
                                 <div class="col-lg-12 mt-4">
                                     <label for="inputCity" class="form-label"><strong>Duration
                                         </strong><span><strong>(</strong><small>weekly</small><strong>)</strong></span></label>
-                                    <input type="number" class="form-control" id="inputCity"
-                                        placeholder="Enter Duration in weeks">
+                                    <input type="number" name="duration" class="form-control" id="inputCity"
+                                        placeholder="Enter Duration in weeks" required>
                                 </div>
 
                                 <div class="text-center mt-4">
@@ -342,24 +350,42 @@
                             <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
                                 src="../../static/images/user/fx.png">
                             <div>
-                                <small><strong>Total Holdings:
-                                    </strong><span>${{current_user.forex_bal}}</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                <small><strong>Total Holdings =
+                                        <span><em style="color: gray;">
+                                                $ {{forex_investment.invested_amount}}</em></span></strong></small><br>
+
+                                <small><strong>Past Performance =
+                                        {% if forex_investment.percentage_increase and forex_investment.is_active %}
+                                        <span style="color: green;"><em> +
+                                                {{forex_investment.percentage_increase}}%</em></span></strong></small><br>
+
+                                {% elif forex_investment.percentage_decrease and forex_investment.is_active %}
+                                <span style="color: red;"><em> -
+                                        {{forex_investment.percentage_decrease}}%</em></span></strong></small><br>
+                                {% else %}
+                                <span style="color: gray;"><em> 0.00%</em></span></strong></small><br>
+                                {% endif %}
+                                <small><strong>Current Value =
+                                        <span><em style="color: gray;">
+                                                $ {{forex_investment.balance}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
-                            <form>
+                            <form action="{{url_for('createForexInvestment')}}" method="POST">
                                 <div class="col-lg-12">
                                     <label for="inputAddress2" class="form-label"><strong>Amount
                                             ($)</strong></label>
-                                    <input type="number" class="form-control" placeholder="Enter Amount">
+                                    <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
+                                        required>
+                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                        </strong><span>( Investment
+                                            amount should not exceed account bal. )</span></small>
                                 </div>
                                 <div class="col-lg-12 mt-4">
                                     <label for="inputCity" class="form-label"><strong>Duration
                                         </strong><span><strong>(</strong><small>weekly</small><strong>)</strong></span></label>
-                                    <input type="number" class="form-control" id="inputCity"
-                                        placeholder="Enter Duration in weeks">
+                                    <input type="number" name="duration" class="form-control" id="inputCity"
+                                        placeholder="Enter Duration in weeks" required>
                                 </div>
 
                                 <div class="text-center mt-4">
@@ -374,24 +400,42 @@
                             <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
                                 src="../../static/images/user/stock.png">
                             <div>
-                                <small><strong>Total Holdings:
-                                    </strong><span>${{current_user.stock_bal}}</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                <small><strong>Total Holdings =
+                                        <span><em style="color: gray;">
+                                                $ {{stock_investment.invested_amount}}</em></span></strong></small><br>
+
+                                <small><strong>Past Performance =
+                                        {% if stock_investment.percentage_increase and stock_investment.is_active %}
+                                        <span style="color: green;"><em> +
+                                                {{stock_investment.percentage_increase}}%</em></span></strong></small><br>
+
+                                {% elif stock_investment.percentage_decrease and stock_investment.is_active %}
+                                <span style="color: red;"><em> -
+                                        {{stock_investment.percentage_decrease}}%</em></span></strong></small><br>
+                                {% else %}
+                                <span style="color: gray;"><em> 0.00%</em></span></strong></small><br>
+                                {% endif %}
+                                <small><strong>Current Value =
+                                        <span><em style="color: gray;">
+                                                $ {{stock_investment.balance}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
-                            <form>
+                            <form action="{{url_for('createStockInvestment')}}" method="POST">
                                 <div class="col-lg-12">
                                     <label for="inputAddress2" class="form-label"><strong>Amount
                                             ($)</strong></label>
-                                    <input type="number" class="form-control" placeholder="Enter Amount">
+                                    <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
+                                        required>
+                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                        </strong><span>( Investment
+                                            amount should not exceed account bal. )</span></small>
                                 </div>
                                 <div class="col-lg-12 mt-4">
                                     <label for="inputCity" class="form-label"><strong>Duration
                                         </strong><span><strong>(</strong><small>weekly</small><strong>)</strong></span></label>
-                                    <input type="number" class="form-control" id="inputCity"
-                                        placeholder="Enter Duration in weeks">
+                                    <input type="number" name="duration" class="form-control" id="inputCity"
+                                        placeholder="Enter Duration in weeks" required>
                                 </div>
 
                                 <div class="text-center mt-4">
@@ -406,24 +450,42 @@
                             <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
                                 src="../../static/images/user/goldy.png">
                             <div>
-                                <small><strong>Total Holdings:
-                                    </strong><span>${{current_user.gold_bal}}</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
+                                <small><strong>Total Holdings =
+                                        <span><em style="color: gray;">
+                                                $ {{gold_investment.invested_amount}}</em></span></strong></small><br>
+
+                                <small><strong>Past Performance =
+                                        {% if gold_investment.percentage_increase and gold_investment.is_active %}
+                                        <span style="color: green;"><em> +
+                                                {{gold_investment.percentage_increase}}%</em></span></strong></small><br>
+
+                                {% elif gold_investment.percentage_decrease and gold_investment.is_active %}
+                                <span style="color: red;"><em> -
+                                        {{gold_investment.percentage_decrease}}%</em></span></strong></small><br>
+                                {% else %}
+                                <span style="color: gray;"><em> 0.00%</em></span></strong></small><br>
+                                {% endif %}
+                                <small><strong>Current Value =
+                                        <span><em style="color: gray;">
+                                                $ {{gold_investment.balance}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
-                            <form>
+                            <form action="{{url_for('createGoldInvestment')}}" method="POST">
                                 <div class="col-lg-12">
                                     <label for="inputAddress2" class="form-label"><strong>Amount
                                             ($)</strong></label>
-                                    <input type="number" class="form-control" placeholder="Enter Amount">
+                                    <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
+                                        required>
+                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                        </strong><span>( Investment
+                                            amount should not exceed account bal. )</span></small>
                                 </div>
                                 <div class="col-lg-12 mt-4">
                                     <label for="inputCity" class="form-label"><strong>Duration
                                         </strong><span><strong>(</strong><small>weekly</small><strong>)</strong></span></label>
-                                    <input type="number" class="form-control" id="inputCity"
-                                        placeholder="Enter Duration in weeks">
+                                    <input type="number" name="duration" class="form-control" id="inputCity"
+                                        placeholder="Enter Duration in weeks" required>
                                 </div>
 
                                 <div class="text-center mt-4">

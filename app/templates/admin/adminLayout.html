@@ -46,7 +46,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="{{url_for('home')}}" class="logo d-flex align-items-center">
+            <a href="{{url_for('userDashboard')}}" class="logo d-flex align-items-center">
                 <img src="{{ url_for('static', filename='user/img/logo.png')}}" alt="">
                 <span class="d-none d-lg-block">MacVest Admin</span>
             </a>
@@ -221,21 +221,34 @@
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed " href="{{ url_for('adminDashboard') }}">
+                <a class="nav-link collapsed " href="{{ url_for('users') }}">
                     <i class="bi bi-person"></i>
-                    <span>Add Balance</span>
+                    <span>All Users</span>
                 </a>
             </li><!-- End Profile Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url_for('createTrader') }}">
+                    <i class="bi bi-file-earmark"></i>
+                    <span>Create Trader</span>
+                </a>
+            </li><!-- End Blank Page Nav -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ url_for('addInvestmentTypes') }}">
+                    <i class="bi bi-file-earmark"></i>
+                    <span>Investment Types</span>
+                </a>
+            </li><!-- End Blank Page Nav -->
             <br>
             <hr>
 
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url_for('adminDashboard') }}">
+                <a class="nav-link collapsed" href="{{ url_for('adminSetting') }}">
                     <i class="bi bi-file-earmark"></i>
                     <span>Settings</span>
                 </a>
             </li><!-- End Blank Page Nav -->
+
 
         </ul>
         <script>

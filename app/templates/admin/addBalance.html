@@ -4,7 +4,8 @@
 <main id="main" class="main">
     {% include 'flashMsg.html' %}
     <div class="pagetitle">
-        <h1>Add Balance</h1>
+        <h1>Add Balance <span style="color: grey;"> ( to {{user.firstname}} {{user.lastname}} )</span></h1>
+
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{url_for('adminDashboard')}}">Dashboard</a></li>
@@ -12,104 +13,150 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Account Balance</h5>
 
-            <!-- Floating Labels Form -->
-            <form class="row g-3">
-                <div class="col-md-12">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
-                        <label for="floatingName">Your Name</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="email" class="form-control" id="floatingEmail" placeholder="Your Email">
-                        <label for="floatingEmail">Your Email</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Password</label>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="form-floating">
-                        <textarea class="form-control" placeholder="Address" id="floatingTextarea"
-                            style="height: 100px;"></textarea>
-                        <label for="floatingTextarea">Address</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="col-md-12">
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingCity" placeholder="City">
-                            <label for="floatingCity">City</label>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Account Balance <span>= ${{user.account_bal}}</span></h5>
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3" action="{{ url_for('accountBalance', user_id=user.id ) }}" method="POST">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="float" name="account_bal" class="form-control" id="floatingName"
+                                    placeholder="Enter Amount" required>
+                                <label for="floatingName">Enter Amount ($)</label>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-floating mb-3">
-                        <select class="form-select" id="floatingSelect" aria-label="State">
-                            <option selected>New York</option>
-                            <option value="1">Oregon</option>
-                            <option value="2">DC</option>
-                        </select>
-                        <label for="floatingSelect">State</label>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingZip" placeholder="Zip">
-                        <label for="floatingZip">Zip</label>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                </div>
-            </form><!-- End floating Labels Form -->
 
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-info">Top Up</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <img src="{{ url_for('static', filename='images/user/goldy.png') }}" alt="gold"
+                            style="width: 25px; height: 25px; margin-right: 5px;">
+                        Gold Bal.<span>= ${{ gold_investment.balance }}</span>
+                    </h5>
+
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3" action="{{ url_for('goldBalance', user_id=user.id ) }}" method="POST">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="float" step="any" name="amount" class="form-control" id="goldAmountInput"
+                                    placeholder="Enter amount" required>
+                                <label for="goldAmountInput">Enter Profit/Loss Amount</label>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" name="action" value="profit" class="btn btn-outline-info">Add
+                                Profit</button>
+                            <button type="submit" name="action" value="loss" class="btn btn-outline-danger">Deduct
+                                Loss</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <img src="{{ url_for('static', filename='images/user/btc.png') }}" alt="gold"
+                            style="width: 25px; height: 25px; margin-right: 5px;">
+                        Crypto Bal.<span>= ${{ crypto_investment.balance }}</span>
+                    </h5>
+
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3" action="{{ url_for('cryptoBalance', user_id=user.id ) }}" method="POST">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="float" step="any" name="amount" class="form-control" id="goldAmountInput"
+                                    placeholder="Enter amount" required>
+                                <label for="goldAmountInput">Enter Profit/Loss Amount</label>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" name="action" value="profit" class="btn btn-outline-info">Add
+                                Profit</button>
+                            <button type="submit" name="action" value="loss" class="btn btn-outline-danger">Deduct
+                                Loss</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <img src="{{ url_for('static', filename='images/user/fx.png') }}" alt="gold"
+                            style="width: 25px; height: 25px; margin-right: 5px;">
+                        Forex Bal.<span>= ${{ forex_investment.balance }}</span>
+                    </h5>
+
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3" action="{{ url_for('forexBalance', user_id=user.id ) }}" method="POST">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="float" step="any" name="amount" class="form-control" id="goldAmountInput"
+                                    placeholder="Enter amount" required>
+                                <label for="goldAmountInput">Enter Profit/Loss Amount</label>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" name="action" value="profit" class="btn btn-outline-info">Add
+                                Profit</button>
+                            <button type="submit" name="action" value="loss" class="btn btn-outline-danger">Deduct
+                                Loss</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <img src="{{ url_for('static', filename='images/user/stock.png') }}" alt="gold"
+                            style="width: 25px; height: 25px; margin-right: 5px;">
+                        Stock Bal.<span>= ${{ stock_investment.balance }}</span>
+                    </h5>
+
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3" action="{{ url_for('stockBalance', user_id=user.id ) }}" method="POST">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="float" step="any" name="amount" class="form-control" id="goldAmountInput"
+                                    placeholder="Enter amount" required>
+                                <label for="goldAmountInput">Enter Profit/Loss Amount</label>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" name="action" value="profit" class="btn btn-outline-info">Add
+                                Profit</button>
+                            <button type="submit" name="action" value="loss" class="btn btn-outline-danger">Deduct
+                                Loss</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+                </div>
+            </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="table-data">
-        <div class="order">
-            <form action="{{ url_for('addBalance', user_id=user.id ) }}" method="POST">
-                <label for="amount">Account Balance</label><br>
-                <input name="account_bal" type="number" value="{{user.account_bal}}"><br><br>
-
-                <label for="amount">Gold Balance</label><br>
-                <input name="gold_bal" type="number" value="{{user.gold_bal}}"><br><br>
-
-                <label for="amount">Crypto Balance</label><br>
-                <input name="crypto_bal" type="number" value="{{user.crypto_bal}}"><br><br>
-
-                <label for="amount">Forex Balance</label><br>
-                <input name="forex_bal" type="number" value="{{user.forex_bal}}"><br><br>
-
-                <label for="amount">Stock Balance</label><br>
-                <input name="stock_bal" type="number" value="{{user.stock_bal}}"><br><br>
-                <button>Confirm Add</button>
-            </form>
-
-        </div>
-    </div>
-
 </main>
 <!-- MAIN -->
 {% endblock content %}

@@ -1,11 +1,65 @@
 {% extends 'admin/adminLayout.html' %}
+
 {% block content %}
-<!-- MAIN -->
-<main>
+<main id="main" class="main">
     {% include 'flashMsg.html' %}
 
-    <h1>users</h1>
+    <div class="pagetitle">
+        <h1>All Users</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a href="{{url_for('adminDashboard')}}">Dashboard</a></li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-</main>
-<!-- MAIN -->
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-12">
+                <!-- Top Selling -->
+                <div class="col-12">
+                    <div class="card top-selling overflow-auto">
+
+
+
+                        <div class="card-body pb-0">
+                            <h5 class="card-title">Users</h5>
+
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr class="border border-dark">
+                                        <th scope="col">S/No.</th>
+                                        <th scope="col">Users</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">TopUp</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    <tr>
+                                        <td>{{user.id}}</td>
+                                        <th scope="row"><a href="#" class="fw-bold"
+                                                style="text-decoration: none; color: black;">{{user.firstname}}
+                                                {{user.lastname}}</a>
+                                        </th>
+                                        <td>{{user.email}}</td>
+                                        <td><a href="{{ url_for('addBalance', user_id=user.id ) }}"><button
+                                                    class="btn btn-outline-info btn-sm">TopUp</button></td>
+                                    </tr>
+
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div><!-- End Top Selling -->
+
+            </div>
+        </div>
+    </section>
+</main><!-- End #main -->
+
 {% endblock content %}
