@@ -1,7 +1,7 @@
 from app import app, db
 from flask import flash, redirect, render_template, request, url_for
 from flask_login import login_required, current_user
-from app.models.user import Investment, InvestmentType, User
+from app.models.user import Investment, InvestmentType, Transaction
 
 @app.route('/investment')
 @login_required
@@ -51,6 +51,13 @@ def closeInvestment():
         
         user = current_user
         user.account_bal += investment.balance
+
+        transaction = Transaction(
+            amount = investment.balance,
+            transaction_type = f'Closed Trade for {investment.type.name}',
+            user_id = user.id
+        )
+        db.session.add(transaction)
 
         investment.balance = 0.00
         investment.invested_amount = 0.00

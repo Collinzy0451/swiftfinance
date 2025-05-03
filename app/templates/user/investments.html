@@ -44,15 +44,19 @@
                                     </a></th>
 
                                 {% if not z.is_active %}
-                                <td><strong style="color: gray;">$<small>{{z.invested_amount}}</small></strong></td>
+                                <td><strong
+                                        style="color: gray;">$<small>{{'{:,.2f}'.format(z.invested_amount)}}</small></strong>
+                                </td>
                                 {% else %}
-                                <td><strong>$<small>{{z.invested_amount}}</small></strong></td>
+                                <td><strong>$<small>{{'{:,.2f}'.format(z.invested_amount)}}</small></strong></td>
                                 {% endif %}
 
                                 {% if not z.is_active %}
-                                <td><strong style="color: gray;">$<small>{{z.balance}}</small></strong></td>
+                                <td><strong
+                                        style="color: gray;">$<small>{{'{:,.2f}'.format(z.balance)}}</small></strong>
+                                </td>
                                 {% else %}
-                                <td><strong>$<small>{{z.balance}}</small></strong></td>
+                                <td><strong>$<small>{{'{:,.2f}'.format(z.balance)}}</small></strong></td>
                                 {% endif %}
 
                                 {% if z.percentage_increase and z.is_active %}
@@ -199,7 +203,8 @@
                             <div>
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
-                                                $ {{crypto_investment.invested_amount}}</em></span></strong></small><br>
+                                                $
+                                                {{'{:,.2f}'.format(crypto_investment.invested_amount)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if crypto_investment.percentage_increase and crypto_investment.is_active %}
@@ -214,7 +219,8 @@
                                 {% endif %}
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
-                                                $ {{crypto_investment.balance}}</em></span></strong></small>
+                                                $
+                                                {{'{:,.2f}'.format(crypto_investment.balance)}}</em></span></strong></small>
                             </div>
 
                         </div>
@@ -225,7 +231,8 @@
                                             ($)</strong></label>
                                     <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
                                         required>
-                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                    <small style="color: gray;"><strong>Acc Bal. =
+                                            ${{'{:,.2f}'.format(current_user.account_bal)}}
                                         </strong><span>( Investment
                                             amount should not exceed account bal. )</span></small>
                                 </div>
@@ -250,7 +257,8 @@
                             <div>
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
-                                                $ {{forex_investment.invested_amount}}</em></span></strong></small><br>
+                                                $
+                                                {{'{:,.2f}'.format(forex_investment.invested_amount)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
 
@@ -267,7 +275,8 @@
 
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
-                                                $ {{forex_investment.balance}}</em></span></strong></small>
+                                                $
+                                                {{'{:,.2f}'.format(forex_investment.balance)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
@@ -277,7 +286,8 @@
                                             ($)</strong></label>
                                     <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
                                         required>
-                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                    <small style="color: gray;"><strong>Acc Bal. =
+                                            ${{'{:,.2f}'.format(current_user.account_bal)}}
                                         </strong><span>( Investment
                                             amount should not exceed account bal. )</span></small>
                                 </div>
@@ -302,7 +312,8 @@
                             <div>
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
-                                                $ {{stock_investment.invested_amount}}</em></span></strong></small><br>
+                                                $
+                                                {{'{:,.2f}'.format(stock_investment.invested_amount)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if stock_investment.percentage_increase and stock_investment.is_active %}
@@ -317,7 +328,8 @@
                                 {% endif %}
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
-                                                $ {{stock_investment.balance}}</em></span></strong></small>
+                                                $
+                                                {{'{:,.2f}'.format(stock_investment.balance)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
@@ -327,7 +339,8 @@
                                             ($)</strong></label>
                                     <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
                                         required>
-                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                    <small style="color: gray;"><strong>Acc Bal. =
+                                            ${{'{:,.2f}'.format(current_user.account_bal)}}
                                         </strong><span>( Investment
                                             amount should not exceed account bal. )</span></small>
                                 </div>
@@ -352,7 +365,8 @@
                             <div>
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
-                                                $ {{gold_investment.invested_amount}}</em></span></strong></small><br>
+                                                $
+                                                {{'{:,.2f}'.format(gold_investment.invested_amount)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if gold_investment.percentage_increase and gold_investment.is_active %}
@@ -367,7 +381,8 @@
                                 {% endif %}
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
-                                                $ {{gold_investment.balance}}</em></span></strong></small>
+                                                $
+                                                {{'{:,.2f}'.format(gold_investment.balance)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
@@ -377,7 +392,8 @@
                                             ($)</strong></label>
                                     <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
                                         required>
-                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                    <small style="color: gray;"><strong>Acc Bal. =
+                                            ${{'{:,.2f}'.format(current_user.account_bal)}}
                                         </strong><span>( Investment
                                             amount should not exceed account bal. )</span></small>
                                 </div>

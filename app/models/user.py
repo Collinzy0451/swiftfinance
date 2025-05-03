@@ -1,11 +1,8 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from sqlalchemy import Numeric
 from datetime import datetime
-from app import db
+from app import db, login_manager
 
-# User loader for Flask-Login
-from app import login_manager
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -22,6 +19,7 @@ class User(db.Model, UserMixin):
     country = db.Column(db.String(120), nullable=False)
     state = db.Column(db.String(120), nullable=False)
     address = db.Column(db.String(200), nullable=False)
+    profile_image = db.Column(db.String(50), nullable=False, default="profile.png" ) 
     dob = db.Column(db.Date, nullable=True)
     
     password_hash = db.Column(db.String(120), nullable=False)
@@ -43,9 +41,9 @@ class User(db.Model, UserMixin):
 # ------------------- Investment Type -------------------
 class InvestmentType(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False, unique=True)  # e.g., Gold, Crypto, Forex
-    description = db.Column(db.String(200), nullable=False, unique=False)  # e.g., Gold, Crypto, Forex
-    logo = db.Column(db.String(50), nullable=False, default="default.png" )  # e.g., Gold, Crypto, Forex
+    name = db.Column(db.String(50), nullable=False, unique=True)  
+    description = db.Column(db.String(200), nullable=False, unique=False) 
+    logo = db.Column(db.String(50), nullable=False, default="default.png" ) 
     investments = db.relationship('Investment', backref='investment_type', lazy=True)
 
 # ------------------- Investment Model -------------------

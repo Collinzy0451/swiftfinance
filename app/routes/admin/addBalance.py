@@ -1,7 +1,7 @@
 from flask_login import current_user, login_required
 from app import app, db
 from flask import render_template, request, flash, url_for, redirect
-from app.models.user import InvestmentType, User, Investment
+from app.models.user import InvestmentType, User, Investment, Transaction
 from decimal import Decimal
 
 
@@ -49,6 +49,13 @@ def accountBalance(user_id):
         final_bal = user.account_bal + Decimal(str(acc_bal))
         user.account_bal = final_bal
 
+        db.session.commit()
+        transaction = Transaction(
+            amount = acc_bal,
+            transaction_type = 'Account Deposit',
+            user_id = user.id
+        )
+        db.session.add(transaction)
         db.session.commit()
         flash(f'Account Balance of {user.firstname} {user.lastname} was updated successfully!', 'success')
         return redirect(url_for('addBalance',  user_id=user.id))

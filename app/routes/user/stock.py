@@ -2,7 +2,7 @@ from decimal import Decimal
 from app import app, db
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from app.models.user import Investment, InvestmentType, User
+from app.models.user import Investment, InvestmentType, Transaction, User
 
 @app.route('/stock', methods=['GET','POST'])
 @login_required
@@ -45,6 +45,12 @@ def createStockInvestment():
         investment.invested_amount += amount
         investment.balance += amount
         investment.is_active = True
+        transaction = Transaction(
+            amount = amount,
+            transaction_type = 'Account Debit For Stock Investment',
+            user_id = current_user.id
+        )
+        db.session.add(transaction)
     else:
         investment = Investment(
             user_id=current_user.id,
@@ -54,6 +60,12 @@ def createStockInvestment():
             is_active=True
         )
         db.session.add(investment)
+        transaction = Transaction(
+            amount = amount,
+            transaction_type = 'Account Debit For Stock Investment',
+            user_id = current_user.id
+        )
+        db.session.add(transaction)
 
     # Deduct from user account balance
     current_user.account_bal -= amount

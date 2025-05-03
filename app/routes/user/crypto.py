@@ -1,9 +1,10 @@
 from decimal import Decimal
+
 from app import app, db
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 
-from app.models.user import Investment, InvestmentType
+from app.models.user import Investment, InvestmentType, Transaction
 
 @app.route('/crypto', methods=['GET','POST'])
 @login_required
@@ -50,6 +51,13 @@ def createCryptoInvestment():
         investment.invested_amount += amount
         investment.balance += amount
         investment.is_active = True
+
+        transaction = Transaction(
+            amount = amount,
+            transaction_type = 'Account Debit For Crypto Investment',
+            user_id = current_user.id
+        )
+        db.session.add(transaction)
     else:
         investment = Investment(
             user_id=current_user.id,
@@ -59,6 +67,12 @@ def createCryptoInvestment():
             is_active=True
         )
         db.session.add(investment)
+        transaction = Transaction(
+            amount = amount,
+            transaction_type = 'Account Debit For Crypto Investment',
+            user_id = current_user.id
+        )
+        db.session.add(transaction)
 
     # Deduct from user account balance
     current_user.account_bal -= amount
