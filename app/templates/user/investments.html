@@ -204,7 +204,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(crypto_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(crypto_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if crypto_investment.percentage_increase and crypto_investment.is_active %}
@@ -220,7 +221,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(crypto_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(crypto_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
 
                         </div>
@@ -258,7 +260,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(forex_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(forex_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
 
@@ -276,7 +279,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(forex_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(forex_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
@@ -313,7 +317,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(stock_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(stock_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if stock_investment.percentage_increase and stock_investment.is_active %}
@@ -329,7 +334,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(stock_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(stock_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
@@ -366,7 +372,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(gold_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(gold_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if gold_investment.percentage_increase and gold_investment.is_active %}
@@ -382,7 +389,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(gold_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(gold_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">

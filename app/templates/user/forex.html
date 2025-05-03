@@ -30,7 +30,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(forex_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(forex_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if forex_investment.percentage_increase and forex_investment.is_active %}
@@ -46,7 +47,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(forex_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(forex_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">

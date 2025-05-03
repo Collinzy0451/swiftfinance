@@ -59,7 +59,7 @@
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Total Investments</h5>
+                                <h5 class="card-title">Total Investments Balance</h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
@@ -299,7 +299,8 @@
                                 src="../../static/images/user/btc.png">
                             <div>
                                 <small><strong>Total Holdings =<span><em style="color: gray;">$
-                                                {{'{:,.2f}'.format(crypto_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(crypto_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
 
                                 <small><strong>Past Performance =
@@ -316,7 +317,8 @@
 
 
                                 <small><strong>Current Value =<span><em style="color: gray;">$
-                                                {{'{:,.2f}'.format(crypto_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(crypto_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
 
                         </div>
@@ -328,7 +330,7 @@
                                     <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
                                         required>
                                     <small style="color: gray;"><strong>Acc Bal. =
-                                            ${{'{:,.2f}'.format(current_user.account_bal)}}
+                                            ${{'{:,.2f}'.format(current_user.account_bal )}}
                                         </strong><span>( Investment
                                             amount should not exceed account bal. )</span></small>
                                 </div>
@@ -354,7 +356,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(forex_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(forex_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if forex_investment.percentage_increase and forex_investment.is_active %}
@@ -370,7 +373,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(forex_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(forex_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
@@ -407,7 +411,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(stock_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(stock_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if stock_investment.percentage_increase and stock_investment.is_active %}
@@ -423,7 +428,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(stock_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(stock_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">
@@ -460,7 +466,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(gold_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(gold_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if gold_investment.percentage_increase and gold_investment.is_active %}
@@ -476,7 +483,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(gold_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(gold_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
                         </div>
                         <div class="">

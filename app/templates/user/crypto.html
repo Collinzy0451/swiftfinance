@@ -31,7 +31,8 @@
                                 <small><strong>Total Holdings =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(crypto_investment.invested_amount)}}</em></span></strong></small><br>
+                                                {{'{:,.2f}'.format(crypto_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
                                 <small><strong>Past Performance =
                                         {% if crypto_investment.percentage_increase and crypto_investment.is_active %}
@@ -47,7 +48,8 @@
                                 <small><strong>Current Value =
                                         <span><em style="color: gray;">
                                                 $
-                                                {{'{:,.2f}'.format(crypto_investment.balance)}}</em></span></strong></small>
+                                                {{'{:,.2f}'.format(crypto_investment.balance or
+                                                0)}}</em></span></strong></small>
                             </div>
 
                         </div>

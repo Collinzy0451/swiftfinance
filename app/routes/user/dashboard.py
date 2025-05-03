@@ -38,6 +38,4 @@ def userDashboard():
     investments = Investment.query.filter_by(user_id=current_user.id).all()
            
     total_investment_balance = db.session.query(func.sum(Investment.balance)).filter_by(user_id=current_user.id).scalar() or 0
-    return render_template("user/user_dasboard.html", 
-                           investment_types=investment_types, 
-                           investments=investments, total_investment_balance=total_investment_balance, gold_investment=gold_investment, crypto_investment=crypto_investment, forex_investment=forex_investment, stock_investment=stock_investment)
+    return render_template("user/user_dasboard.html", investment_types=investment_types, investments=investments, total_investment_balance=total_investment_balance, gold_investment=gold_investment, crypto_investment=crypto_investment, forex_investment=forex_investment, stock_investment=stock_investment)

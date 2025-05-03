@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
 
     account_bal = db.Column(Numeric(12, 2), default=0.00)
 
-    is_admin = db.Column(db.Boolean(), default=False)
+    is_admin = db.Column(db.Boolean(), default=True)
     remember_me = db.Column(db.Boolean(), default=False)
 
     # Relationships
