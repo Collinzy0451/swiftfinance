@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(120), nullable=False)
     dob = db.Column(db.Date, nullable=True)  # Allow null values
-    is_admin = db.Column(db.Boolean(), default=False)
+    is_admin = db.Column(db.Boolean(), default=True)
     remember_me = db.Column(db.Boolean(), default=False)
 
     account_bal = db.Column(db.Integer(), default=0)
