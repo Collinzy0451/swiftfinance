@@ -1,32 +1,75 @@
+from decimal import Decimal
 from app import app, db
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
-from app.models.user import User
+from app.models.user import Investment, InvestmentType, Transaction, User
 
 @app.route('/stock', methods=['GET','POST'])
 @login_required
 def stock():
+    user = current_user
 
-    if request.method == "POST":
-        invested_amount = float(request.form.get('amount', 0))  # Ensure default value
-        duration = request.form.get('duration')
-        acc_bal = current_user.account_bal
-        stock_bal = current_user.stock_bal
+    stock_investment = Investment.query.join(InvestmentType).filter(
+        Investment.user_id == user.id,
+        InvestmentType.name == 'Stocks'
+    ).first()
 
-        if invested_amount > acc_bal or invested_amount <= 0:
-            flash('Investment amount cannot be greater than account balance', 'danger')
-            return(redirect(url_for('stock')))
-        
-        acc_bal -= invested_amount
-        stock_bal += invested_amount
-
-        current_user.account_bal = acc_bal
-        current_user.stock_bal = stock_bal
-
-        
-        db.session.commit()
-        flash("Stock Investment initiated Successfully", 'success')
-        return(redirect(url_for('stock')))
+    return render_template("user/stock.html", stock_investment=stock_investment)
 
 
-    return render_template("user/stock.html")
+
+@app.route('/create-stock-investment', methods=['POST', 'GET'])
+@login_required
+def createStockInvestment():
+    amount = Decimal(request.form.get('amount'))
+    duration = int(request.form.get('duration'))
+
+    if amount > float(current_user.account_bal):
+        flash("Insufficient account balance for this investment.", "danger")
+        return redirect(url_for('stock'))  # or whatever route renders the HTML page
+    
+    if amount <= float(0):
+        flash("Amount cannot be lesser than Zero", "danger")
+        return redirect(url_for('stock'))  # or whatever route renders the HTML page
+
+    # Get Gold Investment Type
+    investment_type = InvestmentType.query.filter_by(name="Stocks").first()
+    if not investment_type:
+        flash("Stock investment type is not configured in the system.", "danger")
+        return redirect(url_for('stock'))
+
+    # Check if user already has a gold investment
+    investment = Investment.query.filter_by(user_id=current_user.id, type_id=investment_type.id).first()
+
+    if investment:
+        investment.invested_amount += amount
+        investment.balance += amount
+        investment.is_active = True
+        transaction = Transaction(
+            amount = amount,
+            transaction_type = 'Account Debit For Stock Investment',
+            user_id = current_user.id
+        )
+        db.session.add(transaction)
+    else:
+        investment = Investment(
+            user_id=current_user.id,
+            type_id=investment_type.id,
+            invested_amount=amount,
+            balance=amount,
+            is_active=True
+        )
+        db.session.add(investment)
+        transaction = Transaction(
+            amount = amount,
+            transaction_type = 'Account Debit For Stock Investment',
+            user_id = current_user.id
+        )
+        db.session.add(transaction)
+
+    # Deduct from user account balance
+    current_user.account_bal -= amount
+
+    db.session.commit()
+    flash(f"Successfully invested ${amount} in Stocks for {duration} week(s).", "success")
+    return redirect(url_for('userDashboard'))  # Change to appropriate redirect

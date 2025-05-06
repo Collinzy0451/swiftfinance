@@ -52,7 +52,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        flash("Registration successful! Please log in.", "success")
+        flash("Registration successful! logged in.", "success")
         user = User.query.filter_by(email=email).first()
 
         login_user(user, remember=remember)

@@ -12,11 +12,6 @@ app = Flask(__name__)
 # Load config
 app.config.from_object(Config)
 
-
-# Ensure SECRET_KEY is set
-if not app.config['SECRET_KEY']:  
-    app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", Config.SECRET_KEY)
-
 # Initialize database
 bcrypt = Bcrypt(app)
 db = SQLAlchemy(app)

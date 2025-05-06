@@ -1,0 +1,102 @@
+{% extends 'admin/adminLayout.html' %}
+{% block content %}
+<!-- MAIN -->
+<main id="main" class="main">
+    {% include 'flashMsg.html' %}
+    <div class="pagetitle">
+        <h1>Edit/<span style="color: red;">Delete</span> Investment Type</h1>
+
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{url_for('adminDashboard')}}">Dashboard</a></li>
+                <li class="breadcrumb-item active">edit Investment Type</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Edit Investment Types</h5>
+                    <!-- Floating Labels Form -->
+                    <form action="{{url_for('editInvestmentTypes', investment_type_id=investment_type.id)}}"
+                        class="row g-3" method="POST" enctype="multipart/form-data">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" name="investmentTypeName" value="{{investment_type.name}}"
+                                    class="form-control" id="floatingName" placeholder="Enter Investment Name">
+                                <label for="floatingName">Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" value="{{investment_type.description}}"
+                                    name="investmentTypeDescription" class="form-control" id="floatingName"
+                                    placeholder="Enter Investment Name">
+                                <label for="floatingName">Description</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label class="mb-2" for="floatingName">Image/Logo</label>
+                            <input type="file" name="img" class="form-control" id="floatingName">
+                        </div>
+
+                        <div class="text-center">
+                            <button onclick="{alart('Are you sure you want to proceed?')}" type="submit"
+                                class="btn btn-outline-info">Update Investment Type</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 style="color: red;" class="card-title">Delete Investment Type</h5>
+                    <!-- Floating Labels Form -->
+                    <form action="{{ url_for('deleteInvestmentType', investment_type_id=investment_type.id) }}"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this investment type?');">
+
+
+                        <div class="col-md-12 ">
+                            <img style="width: 40px; height: 40px;"
+                                src="{{url_for('static', filename='images/investment_type/' + investment_type.logo)}}"
+                                alt="">
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating mt-3">
+                                <h6><strong>Name:</strong></h6>
+
+                                <div style="background-color: antiquewhite; padding: 10px; border-radius: 5px;">
+                                    {{investment_type.name}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating mt-3">
+                                <h6><strong>Description:</strong></h6>
+                                <div style="background-color: antiquewhite; padding: 10px; border-radius: 5px;">
+                                    {{investment_type.description}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-outline-danger">Delete Investment Type</button>
+                        </div>
+
+                    </form><!-- End floating Labels Form -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</main>
+<!-- MAIN -->
+{% endblock content %}

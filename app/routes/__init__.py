@@ -34,3 +34,4 @@ from .admin import adminDashboard
 from .admin import addBalance
 from .admin import adminSetting
 from .admin import users
+from .admin import investment_type, create_trader

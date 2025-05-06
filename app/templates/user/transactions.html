@@ -2,78 +2,65 @@
 
 {% block content %}
 <main id="main" class="main">
-    {% include 'flashMsg.html' %}
+
     <div class="pagetitle">
         <h1>Transactions History</h1>
-        <nav>
+        <!-- <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">General</li>
+                <li class="breadcrumb-item active">Data</li>
             </ol>
-        </nav>
+        </nav> -->
     </div><!-- End Page Title -->
-    <div class="col-lg-12">
 
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Table with hoverable rows</h5>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
 
-                <!-- Table with hoverable rows -->
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Position</th>
-                            <th scope="col">Age</th>
-                            <th scope="col">Start Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Brandon Jacob</td>
-                            <td>Designer</td>
-                            <td>28</td>
-                            <td>2016-05-25</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Bridie Kessler</td>
-                            <td>Developer</td>
-                            <td>35</td>
-                            <td>2014-12-05</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Ashleigh Langosh</td>
-                            <td>Finance</td>
-                            <td>45</td>
-                            <td>2011-08-12</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Angus Grady</td>
-                            <td>HR</td>
-                            <td>34</td>
-                            <td>2012-06-11</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Raheem Lehner</td>
-                            <td>Dynamic Division Officer</td>
-                            <td>47</td>
-                            <td>2011-04-19</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- End Table with hoverable rows -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <small>Transaction ID</small>
+                                    </th>
+                                    <th><small>Amount</small></th>
+                                    <th><small>Description</small></th>
+                                    <th><small>Date</small></th>
+                                    <th><small>Status</small></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for transaction in transactions %}
+                                <tr>
+                                    <td><small>QTZ0000{{transaction.id}}</small></td>
+                                    <td><small>$ {{ "{:,.2f}".format(transaction.amount) }}</small></td>
+                                    {% if transaction.investment_type %}
+                                    <td><small>{{transaction.investment_type.name}}</small></td>
+                                    {% else %}
+                                    <td><small>{{transaction.transaction_type}}</small></td>
+                                    {% endif %}
+                                    <td><small>{{ transaction.timestamp.strftime("%b %d, %Y at %I:%M %p") }}</small>
+                                    </td>
+                                    <td><small>Completed</small></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                        <!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
 
             </div>
         </div>
+    </section>
 
-    </div>
-</main>
+</main><!-- End #main -->
 
 {% endblock content %}

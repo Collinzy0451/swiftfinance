@@ -24,32 +24,50 @@
                     <div class="card-body">
 
                         <div style="text-align: center; padding-top: 2.5rem; padding-bottom: 2.5rem;">
-                            <h3><strong>Stock Investment</strong></h3>
-                            <img style="margin-bottom: 8px; width: 5rem; height: 5rem;"
+                            <h3><strong>Stocks Investment</strong></h3>
+                            <img style="margin-bottom: 8px; width: 8rem; height: 5rem;"
                                 src="../../static/images/user/stock.png">
                             <div>
-                                <small><strong>Total Holdings:
-                                    </strong><span>${{current_user.stock_bal}}</span></small><br>
-                                <small><strong>Past Performance: </strong><span>+20%</span></small><br>
-                                <small><strong>Current Value: </strong><span>$2,400</span></small>
-                            </div>
+                                <small><strong>Total Holdings =
+                                        <span><em style="color: gray;">
+                                                $
+                                                {{'{:,.2f}'.format(stock_investment.invested_amount or
+                                                0)}}</em></span></strong></small><br>
 
+                                <small><strong>Past Performance =
+                                        {% if stock_investment.percentage_increase and stock_investment.is_active %}
+                                        <span style="color: green;"><em> +
+                                                {{stock_investment.percentage_increase}}%</em></span></strong></small><br>
+
+                                {% elif stock_investment.percentage_decrease and stock_investment.is_active %}
+                                <span style="color: red;"><em> -
+                                        {{stock_investment.percentage_decrease}}%</em></span></strong></small><br>
+                                {% else %}
+                                <span style="color: gray;"><em> 0.00%</em></span></strong></small><br>
+                                {% endif %}
+                                <small><strong>Current Value =
+                                        <span><em style="color: gray;">
+                                                $
+                                                {{'{:,.2f}'.format(stock_investment.balance or
+                                                0)}}</em></span></strong></small>
+                            </div>
                         </div>
                         <div class="">
-                            <form action="{{url_for('stock')}}" method="POST">
+                            <form action="{{url_for('createStockInvestment')}}" method="POST">
                                 <div class="col-lg-12">
                                     <label for="inputAddress2" class="form-label"><strong>Amount
                                             ($)</strong></label>
-                                    <input name="amount" type="number" class="form-control" placeholder="Enter Amount"
+                                    <input type="number" name="amount" class="form-control" placeholder="Enter Amount"
                                         required>
-                                    <small style="color: gray;"><strong>Acc Bal. = ${{current_user.account_bal}}
+                                    <small style="color: gray;"><strong>Acc Bal. =
+                                            ${{'{:,.2f}'.format(current_user.account_bal)}}
                                         </strong><span>( Investment
                                             amount should not exceed account bal. )</span></small>
                                 </div>
                                 <div class="col-lg-12 mt-4">
                                     <label for="inputCity" class="form-label"><strong>Duration
-                                        </strong><span style="color: gray;">(<small> weekly </small>)</span></label>
-                                    <input name="duration" type="number" class="form-control" id="inputCity"
+                                        </strong><span><strong>(</strong><small>weekly</small><strong>)</strong></span></label>
+                                    <input type="number" name="duration" class="form-control" id="inputCity"
                                         placeholder="Enter Duration in weeks" required>
                                 </div>
 

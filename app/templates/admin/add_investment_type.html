@@ -1,0 +1,101 @@
+{% extends 'admin/adminLayout.html' %}
+{% block content %}
+<!-- MAIN -->
+<main id="main" class="main">
+    {% include 'flashMsg.html' %}
+    <div class="pagetitle">
+        <h1>Add Investment Type</h1>
+
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{url_for('adminDashboard')}}">Dashboard</a></li>
+                <li class="breadcrumb-item active">Investment Type</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <div class="row">
+        <!-- Top Selling -->
+        <div class="col-lg-8">
+            <div class="card top-selling overflow-auto">
+
+
+
+                <div class="card-body pb-0">
+                    <h5 class="card-title">All Investment Types</h5>
+
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr class="border border-dark">
+                                <th scope="col">Types</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Settings</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for invest_type in investment_type %}
+                            <tr>
+                                <th scope="row"><a href="#" class="fw-bold"
+                                        style="text-decoration: none; color: black;"><img
+                                            style="width: 25px; height: 25px;"
+                                            src="{{url_for('static', filename='images/investment_type/' + invest_type.logo)}}"
+                                            alt=""> {{invest_type.name}}</a>
+                                </th>
+                                <td>{{invest_type.description}}</td>
+                                <td><a href="{{url_for('editInvestmentTypes',investment_type_id=invest_type.id)}}"><button
+                                            class="btn btn-outline-info btn-sm">Settings</button></a></td>
+
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div><!-- End Top Selling -->
+
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Investment Type</h5>
+                    <!-- Floating Labels Form -->
+                    <form action="{{url_for('addInvestmentTypes')}}" class="row g-3" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" name="investmentTypeName" class="form-control" id="floatingName"
+                                    placeholder="Enter Investment Name" required>
+                                <label for="floatingName">Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" name="investmentTypeDescription" class="form-control"
+                                    id="floatingName" placeholder="Enter Investment Name" required>
+                                <label for="floatingName">Description</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-3">
+                            <label class="mb-2" for="floatingName">Image/Logo</label>
+                            <input type="file" name="img" class="form-control" id="floatingName" required>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-success">Add Investment Type</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</main>
+<!-- MAIN -->
+{% endblock content %}
