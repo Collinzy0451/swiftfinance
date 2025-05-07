@@ -24,10 +24,9 @@ class User(db.Model, UserMixin):
     
     password_hash = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(120), nullable=False)
-
-    account_bal = db.Column(Numeric(12, 2), default=0.00)
-
+    dob = db.Column(db.Date, nullable=True)  # Allow null values
     is_admin = db.Column(db.Boolean(), default=False)
+    account_bal = db.Column(Numeric(12, 2), default=0.00)
     remember_me = db.Column(db.Boolean(), default=False)
 
     # Relationships
