@@ -101,29 +101,29 @@
 
 
                         <div class="card-body pb-0">
-                            <h5 class="card-title">Investment Portfolio <span>| Today</span></h5>
+                            <h5 class="card-title">All Users</h5>
 
-                            <table class="table table-borderless">
+                            <table class="table datatable">
                                 <thead>
                                     <tr class="border border-dark">
                                         <th scope="col">S/No.</th>
                                         <th scope="col">Users</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Add Balance</th>
+                                        <th scope="col">TopUp</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for user in users %}
                                     <tr>
-                                        <td>{{user.id}}</td>
+                                        <td><small>{{user.id}}</small></td>
                                         <th scope="row"><a href="#" class="fw-bold"
-                                                style="text-decoration: none; color: black;">{{user.firstname}}
-                                                {{user.lastname}}</a>
+                                                style="text-decoration: none; color: black;"><small>{{user.firstname}}
+                                                    {{user.lastname}}</small></a>
                                         </th>
                                         <td>{{user.email}}</td>
                                         <td><a href="{{ url_for('addBalance', user_id=user.id ) }}"><button
-                                                    style="padding: 3px; border-color: rgb(83, 133, 133);">Add
-                                                    Balance</td>
+                                                    class="btn btn-outline-info btn-sm"><small>TopUp</small></button>
+                                        </td>
                                     </tr>
 
                                     {% endfor %}

@@ -2,7 +2,28 @@ from app import app, db, bcrypt
 from flask import render_template, request, redirect, url_for, flash
 from app.models.user import User
 from flask_login import login_user
+import os
 
+
+# Utility function to save images
+def save_image(image_data):
+    import secrets
+    from PIL import Image
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(image_data.filename)
+    image_fn = random_hex + f_ext
+    image_path = os.path.join(app.root_path, 'static/images/profile', image_fn)
+    
+    # Ensure the directory exists
+    os.makedirs(os.path.dirname(image_path), exist_ok=True)
+
+    # Resize the image if necessary
+    output_size = (300, 300)
+    i = Image.open(image_data)
+    i.thumbnail(output_size)
+    i.save(image_path)
+
+    return image_fn
 
 
 
@@ -11,12 +32,9 @@ def register():
     if request.method == 'POST':
         firstname = request.form.get('firstname')
         lastname = request.form.get('lastname')
-        country = request.form.get('country')
-        state = request.form.get('state')
         email = request.form.get('email')
-        phone = request.form.get('phone')
-        address = request.form.get('address')
         password = request.form.get('password')
+        profile_pics = request.files.get('profile')
         confirm_password = request.form.get('confirm-password')
         remember = request.form.get('rememberMe')
         
@@ -32,20 +50,24 @@ def register():
         if existing_user:
             flash("Email already registered!", "danger")
             return redirect(url_for('register'))
+        
+
+        if profile_pics:
+            profile_filename = save_image(profile_pics)
+        else:
+            profile_filename = None
 
         # Hash password
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
     
+        
         # Create new user
         new_user = User(
             firstname=firstname,
             lastname=lastname,
-            country=country,
-            state=state,
             email=email,
-            phone=phone,
-            address=address,
+            profile_image = profile_filename,
             password_hash=hashed_password,  # Use 'password' to store the hashed password
             password=password  
         )
@@ -59,3 +81,4 @@ def register():
         return redirect(url_for('userDashboard'))
 
     return render_template("user/register.html")
+
