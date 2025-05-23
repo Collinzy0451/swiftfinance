@@ -18,7 +18,8 @@
         <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Account Balance <span>= ${{user.account_bal}}</span></h5>
+                    <h5 class="card-title">Account Balance <span>= ${{'{:,.2f}'.format(user.account_bal or 0)}}</span>
+                    </h5>
                     <!-- Floating Labels Form -->
                     <form class="row g-3" action="{{ url_for('accountBalance', user_id=user.id ) }}" method="POST">
                         <div class="col-md-12">
@@ -43,7 +44,7 @@
                     <h5 class="card-title">
                         <img src="{{ url_for('static', filename='images/user/goldy.png') }}" alt="gold"
                             style="width: 25px; height: 25px; margin-right: 5px;">
-                        Gold Bal.<span>= ${{ gold_investment.balance }}</span>
+                        Gold Bal.<span>= ${{'{:,.2f}'.format(gold_investment.balance or 0) }}</span>
                     </h5>
 
                     <!-- Floating Labels Form -->
@@ -73,7 +74,7 @@
                     <h5 class="card-title">
                         <img src="{{ url_for('static', filename='images/user/btc.png') }}" alt="gold"
                             style="width: 25px; height: 25px; margin-right: 5px;">
-                        Crypto Bal.<span>= ${{ crypto_investment.balance }}</span>
+                        Crypto Bal.<span>= ${{ '{:,.2f}'.format(crypto_investment.balance or 0) }}</span>
                     </h5>
 
                     <!-- Floating Labels Form -->
@@ -103,7 +104,7 @@
                     <h5 class="card-title">
                         <img src="{{ url_for('static', filename='images/user/fx.png') }}" alt="gold"
                             style="width: 25px; height: 25px; margin-right: 5px;">
-                        Forex Bal.<span>= ${{ forex_investment.balance }}</span>
+                        Forex Bal.<span>= ${{ '{:,.2f}'.format(forex_investment.balance or 0) }}</span>
                     </h5>
 
                     <!-- Floating Labels Form -->
@@ -133,7 +134,7 @@
                     <h5 class="card-title">
                         <img src="{{ url_for('static', filename='images/user/stock.png') }}" alt="gold"
                             style="width: 25px; height: 25px; margin-right: 5px;">
-                        Stock Bal.<span>= ${{ stock_investment.balance }}</span>
+                        Stock Bal.<span>= ${{ '{:,.2f}'.format(stock_investment.balance or 0) }}</span>
                     </h5>
 
                     <!-- Floating Labels Form -->

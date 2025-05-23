@@ -58,17 +58,18 @@
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
-
-
-
-
                 <li class="nav-item dropdown pe-3">
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="{{ url_for('static', filename='images/profile/{{current_user.profile_image}}')}}"
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0 " data-bs-toggle="dropdown">
+                        {% if current_user.is_authenticated and current_user.profile_image %}
+                        <img src="{{ url_for('static', filename='images/profile/' ~ current_user.profile_image)}}"
                             alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2"> {{current_user.lastname}}</span>
-                    </a><!-- End Profile Iamge Icon -->
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/profile/profile-default.png')}}" alt="Profile"
+                            class="rounded-circle">
+
+                        {% endif %}
+                    </a>
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
@@ -79,12 +80,7 @@
                             <hr class="dropdown-divider">
                         </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="{{ url_for('profile') }}">
-                                <i class="bi bi-person"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
+
                         <li>
                             <hr class="dropdown-divider">
                         </li>
