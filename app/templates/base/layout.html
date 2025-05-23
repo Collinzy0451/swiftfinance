@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAC Vest Inv</title>
+    <title>MacVestUniversal</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='base/css/main.css') }}">
 
@@ -89,24 +89,24 @@
             <div class="row">
                 <!-- About Us Column -->
                 <div class="footer-col logo-col">
-                    <img src="{{ url_for('static', filename='images/logo6.png') }}" alt="TrustFinance"
+                    <img src="{{ url_for('static', filename='images/logo6.png') }}" alt="MacVest"
                         class="footer-logo">
                 </div>
                 <!-- Quick Links Column -->
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#investment">Investments</a></li>
-                        <li><a href="#testimonials">Testimonials</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('investments') }}">Investments</a></li>
+                        <li><a href="{{ url_for('testimonials') }}">Testimonials</a></li>
+                        <li><a href="{{ url_for('contact') }}">Contact</a></li>
                     </ul>
                 </div>
                 <!-- Contact Info Column -->
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li>Email: support@TrustFinance.com</li>
+                        <li>Email: admin@MacVestUniversal.com</li>
                         <li>Phone: +123 456 7890</li>
                         <li>Location: New York, USA</li>
                     </ul>
@@ -115,16 +115,20 @@
                 <div class="footer-col">
                     <h4>Follow Us</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/share/16KRK9fEgL/?mibextid=wwXIfr"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/macvestuniverse?s=21"><i class="fab fa-twitter"></i></a>
+                        <!-- <a href="#"><i class="fab fa-instagram"></i></a> -->
+                        <!-- <a href="#"><i class="fab fa-linkedin"></i></a> -->
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 TrustFinance. All rights reserved.</p>
+          
+                <div class="copyright">
+                    &copy; Copyright <strong><span>MacVestUniversal</span></strong>. All Rights Reserved
+                </div>
+              
         </div>
     </footer>
 
